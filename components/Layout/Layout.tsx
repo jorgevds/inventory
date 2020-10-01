@@ -3,7 +3,7 @@ import Head from "next/head";
 import Header from "../Navigation/Header";
 import Footer from "../Navigation/Footer";
 
-const Layout = ({ children, title = "Inventory" }) => {
+const Layout = ({ children, title = "Inventory", loggedIn }) => {
   return (
     <>
       <Head>
@@ -63,7 +63,7 @@ const Layout = ({ children, title = "Inventory" }) => {
           content="twitter img alt of the thumbnail photo"
         />
       </Head>
-      <Header />
+      <Header loggedIn={loggedIn} />
       {children}
       <Footer />
     </>

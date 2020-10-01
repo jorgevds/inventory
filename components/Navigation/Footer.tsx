@@ -26,6 +26,16 @@ const Footer = () => {
             </Link>
           </li>
           <li>Copyright © 2020. All rights reserved.</li>
+          <li>
+            <Link href="/users/register">
+              <a>register</a>
+            </Link>
+          </li>
+          <li>
+            <Link href="/users/login">
+              <a>login</a>
+            </Link>
+          </li>
         </ul>
       </nav>
     </footer>

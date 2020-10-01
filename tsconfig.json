@@ -20,7 +20,8 @@
     "**/*.tsx",
     "pages/index.js",
     "pages/_app.js",
-    "pages/_document.js"
+    "pages/_document.js",
+    "pages/users/register.js"
   ],
   "exclude": ["node_modules"]
 }
