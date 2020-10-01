@@ -13,6 +13,14 @@ a {
   box-sizing: border-box;
 }
 
+nav {
+  display: inline-block;
+}
+
+nav ul {
+  display: flex;
+}
+
 form {
   display: flex;
   flex-direction: column;
@@ -26,4 +34,8 @@ input {
 button {
   width: 200px;
   margin: 20px;
+}
+
+ul li {
+  list-style: none;
 }
