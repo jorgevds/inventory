@@ -1,5 +1,3 @@
-import { timeEnd } from "console";
-import { firestore } from "firebase";
 import Form from "./Form";
 
 const Contact = ({ firstName, lastName, email, message, title }) => {

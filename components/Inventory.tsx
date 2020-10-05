@@ -3,12 +3,13 @@ import fire from "../config/fire-config";
 
 const Inventory = () => {
   const [itemsList, setItemsList] = useState([]);
+  const user = fire.auth().currentUser;
 
   useEffect(() => {
     let mounted = true;
     fire
       .firestore()
-      .collection("inventory")
+      .collection(`${user.uid}`)
       .onSnapshot((snap) => {
         const itemsList = snap.docs.map((doc) => ({
           id: doc.id,

@@ -1,21 +1,7 @@
 import Link from "next/link";
-import { useState } from "react";
-import fire from "../../config/fire-config";
+import Logout from "../Authentication/Logout";
 
 const Header = ({ loggedIn }) => {
-  const [notification, setNotification] = useState("");
-
-  const handleLogout = () => {
-    fire
-      .auth()
-      .signOut()
-      .then(() => {
-        setNotification("Logged out");
-        setTimeout(() => {
-          setNotification("");
-        }, 2000);
-      });
-  };
   return (
     <header>
       <nav>
@@ -54,7 +40,7 @@ const Header = ({ loggedIn }) => {
               </li>
             </ul>
           ) : (
-            <button onClick={handleLogout}>Logout</button>
+            <Logout />
           )}
         </ul>
       </nav>

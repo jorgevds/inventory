@@ -14,6 +14,8 @@ const EnterForm: React.FC<Props> = () => {
 
   const [submit, setSubmit] = useState(false);
 
+  const user = fire.auth().currentUser;
+
   const itemTypeList = [
     { id: 1, name: "unit" },
     { id: 2, name: "kg" },
@@ -27,8 +29,9 @@ const EnterForm: React.FC<Props> = () => {
 
   const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
-
-    fire.firestore().collection("inventory").add({
+    // collections only take documents: every user would need their own collection which stores all items,
+    // which then creates a doc for each since a doc can only contain 1mb max
+    fire.firestore().collection(`${user.uid}`).add({
       item: itemCategory,
       amount: itemAmount,
       type: itemType,

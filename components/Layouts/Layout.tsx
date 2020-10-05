@@ -64,6 +64,7 @@ const Layout = ({ children, title = "Inventory", loggedIn }) => {
         />
       </Head>
       <Header loggedIn={loggedIn} />
+      <h1>Inventory</h1>
       {children}
       <Footer />
     </>
