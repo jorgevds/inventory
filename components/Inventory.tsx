@@ -30,6 +30,13 @@ const Inventory = () => {
         {itemsList.map((item) => (
           <li key={item.id}>
             {item.item} {item.amount} {item.type}
+            <button
+              onClick={(event) =>
+                fire.firestore().collection(`${user.uid}`).doc(item.id).delete()
+              }
+            >
+              Delete
+            </button>
           </li>
         ))}
       </ul>
