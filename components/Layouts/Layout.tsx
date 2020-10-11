@@ -1,16 +1,39 @@
 import Head from "next/head";
-// import Link from "next/link";
 import Header from "../Navigation/Header";
 import Footer from "../Navigation/Footer";
+import fire from "../../config/fire-config";
+import React, { useState } from "react";
 
-const Layout = ({ children, title = "Inventory", loggedIn }) => {
+const Layout = ({ children, title = "Inventory" }) => {
+  const [loggedIn, setLoggedIn] = useState<boolean>(false);
+
+  fire.auth().onAuthStateChanged((user) => {
+    if (user) {
+      user.getIdToken().then(function (token) {
+        window.sessionStorage.getItem(token);
+        if (token) {
+          setLoggedIn(true);
+          fetch("http://localhost:3000/users/login", {
+            method: "POST",
+            headers: {
+              "Content-Type": "application/json",
+              Authorization: token,
+            },
+          });
+        }
+      });
+    } else {
+      setLoggedIn(false);
+    }
+  });
+
   return (
     <>
       <Head>
         <title>{title}</title>
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
         <link rel="stylesheet" href="style.css" />
-        <link href="google-font" rel="stylesheet" />
+        <link href="https://fonts.googleapis.com/css2?family=Open+Sans&family=Sansita+Swashed:wght@300&display=swap" rel="stylesheet"/>
         <link
           rel="apple-touch-icon"
           sizes="60x60"
@@ -64,7 +87,7 @@ const Layout = ({ children, title = "Inventory", loggedIn }) => {
         />
       </Head>
       <Header loggedIn={loggedIn} />
-      <h1>Inventory</h1>
+      <h1 className="text-2xl font-title">Inventory</h1>
       {children}
       <Footer />
     </>

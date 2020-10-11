@@ -3,13 +3,14 @@ import fire from "../config/fire-config";
 
 const Inventory = () => {
   const [itemsList, setItemsList] = useState([]);
+
   const user = fire.auth().currentUser;
 
   useEffect(() => {
     let mounted = true;
     fire
       .firestore()
-      .collection(`${user.uid}`)
+      .collection(`${user.email}`)
       .onSnapshot((snap) => {
         const itemsList = snap.docs.map((doc) => ({
           id: doc.id,
@@ -32,11 +33,28 @@ const Inventory = () => {
             {item.item} {item.amount} {item.type}
             <button
               onClick={(event) =>
-                fire.firestore().collection(`${user.uid}`).doc(item.id).delete()
+                fire
+                  .firestore()
+                  .collection(`${user.email}`)
+                  .doc(item.id)
+                  .delete()
               }
             >
               Delete
             </button>
+            <input
+              type="number"
+              value={item.amount}
+              onChange={(event) =>
+                fire
+                  .firestore()
+                  .collection(`${user.email}`)
+                  .doc(item.id)
+                  .update({
+                    amount: `${event.target.value}`,
+                  })
+              }
+            />
           </li>
         ))}
       </ul>

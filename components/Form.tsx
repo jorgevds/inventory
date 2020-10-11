@@ -22,6 +22,11 @@ const Form: React.FC<Props> = () => {
     event.preventDefault();
     setSubmit(true);
   };
+  const handleSelectChange = (event: React.FormEvent<HTMLSelectElement>) => {};
+  const handleInputChange = (event: React.FormEvent<HTMLInputElement>) => {};
+  const handleTextAreaChange = (
+    event: React.FormEvent<HTMLTextAreaElement>
+  ) => {};
 
   return (
     <div>

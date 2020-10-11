@@ -10,8 +10,12 @@
   "dependencies": {
     "firebase": "^7.21.1",
     "next": "9.5.3",
+    "postcss-nested": "^5.0.1",
+    "postcss-preset-env": "^6.7.0",
     "react": "16.13.1",
-    "react-dom": "16.13.1"
+    "react-dom": "16.13.1",
+    "styled-jsx-plugin-postcss": "^3.0.1",
+    "tailwindcss": "^1.8.12"
   },
   "devDependencies": {
     "@types/node": "^14.11.2",

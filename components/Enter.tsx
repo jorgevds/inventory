@@ -2,12 +2,13 @@ import { useState } from "react";
 import fire from "../config/fire-config";
 
 interface Props {
-  itemCategory?: number;
+  itemCategory?: string;
   itemAmount?: number;
   submit?: boolean;
+  loggedIn?: boolean;
 }
 
-const EnterForm: React.FC<Props> = () => {
+const EnterForm: React.FC<Props> = ({ loggedIn }) => {
   const [itemCategory, setItemCategory] = useState<string>("");
   const [itemAmount, setItemAmount] = useState<number>(1);
   const [itemType, setItemType] = useState<string>();
@@ -31,7 +32,7 @@ const EnterForm: React.FC<Props> = () => {
     event.preventDefault();
     // collections only take documents: every user would need their own collection which stores all items,
     // which then creates a doc for each since a doc can only contain 1mb max
-    fire.firestore().collection(`${user.uid}`).add({
+    fire.firestore().collection(`${user.email}`).add({
       item: itemCategory,
       amount: itemAmount,
       type: itemType,
@@ -101,8 +102,8 @@ const EnterForm: React.FC<Props> = () => {
           </select>
         </label>
 
-        <button type="submit" name="Submit">
-          Submit
+        <button type="submit" name="Enter">
+          Enter
         </button>
       </form>
     </>

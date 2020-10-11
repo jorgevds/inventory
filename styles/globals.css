@@ -13,12 +13,31 @@ a {
   box-sizing: border-box;
 }
 
+#__next {
+  min-height: 100vh;
+  height: auto;
+  display: flex;
+  flex-direction: column;
+}
+
 nav {
   display: inline-block;
 }
 
 nav ul {
   display: flex;
+}
+
+nav ul li {
+  padding: 20px;
+}
+
+h1 {
+  text-align: center;
+}
+
+.content {
+  flex: 1;
 }
 
 form {
