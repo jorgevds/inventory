@@ -1,0 +1,23 @@
+    @tailwind base;
+    html {
+        @apply font-body;
+    }
+
+    #__next {
+        @apply flex flex-col h-auto min-h-screen;
+    }
+
+    h2 {
+        @apply text-xl;
+    }
+
+    h3 {
+        @apply text-lg;
+    }
+
+    a {
+        @apply text-blue-600;
+    }
+
+    @tailwind components;
+    @tailwind utilities;
