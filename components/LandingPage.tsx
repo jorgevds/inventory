@@ -1,6 +1,7 @@
-import Inventory from "./Inventory";
 
 const Landing = () => {
-  return <div><Inventory /></div>;
+  return <div>
+    <h2 className="py-8 text-center">Login to get started</h2>
+    </div>;
 };
 export default Landing;

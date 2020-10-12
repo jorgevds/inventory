@@ -1,5 +1,5 @@
 import Layout from "../components/Layouts/Layout";
-// import Landing from "../components/LandingPage";
+import Landing from "../components/LandingPage";
 import Inventory from "../components/Inventory";
 import fire from "../config/fire-config";
 import { useState } from "react";
@@ -24,8 +24,8 @@ export default function Home() {
   return (
     <Layout>
       <div className="flex-1">
-        {/* <Landing /> */}
-        {loggedIn ? <Inventory /> : <h2>Login to get started</h2>}
+        {loggedIn && <Inventory />}
+        <Landing />
       </div>
     </Layout>
   );

@@ -1,5 +1,6 @@
 import { useState } from "react";
 import fire from "../config/fire-config";
+import { useRouter } from "next/router";
 
 interface Props {
   itemCategory?: string;
@@ -9,6 +10,8 @@ interface Props {
 }
 
 const EnterForm: React.FC<Props> = ({ loggedIn }) => {
+  const router = useRouter();
+
   const [itemCategory, setItemCategory] = useState<string>("");
   const [itemAmount, setItemAmount] = useState<number>(1);
   const [itemType, setItemType] = useState<string>();
@@ -50,7 +53,9 @@ const EnterForm: React.FC<Props> = ({ loggedIn }) => {
   };
 
   return (
-    <>
+
+  
+    <div className="flex-1">
       <h2>Enter items into your inventory</h2>
       <h3>
         Hit <span>submit</span> to register your inventory items
@@ -106,7 +111,7 @@ const EnterForm: React.FC<Props> = ({ loggedIn }) => {
           Enter
         </button>
       </form>
-    </>
+    </div>
   );
 };
 

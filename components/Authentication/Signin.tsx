@@ -62,21 +62,26 @@ const Signin = () => {
   };
 
   return (
-    <section>
-      <h2>Login</h2>
+    <section className="flex flex-col items-center justify-center flex-1">
       {notify}
-      <form onSubmit={handleLogin}>
+      <form onSubmit={handleLogin} className="flex flex-col w-2/5">
+        <label htmlFor={username}>
         Email
+        </label>
         <input
           type="email"
           value={username}
           onChange={({ target }) => setUsername(target.value)}
+          className="p-4 m-5"
         />
+        <label htmlFor={password}>
         Password
+        </label>
         <input
           type="password"
           value={password}
           onChange={({ target }) => setPassword(target.value)}
+          className="p-4 m-5"
         />
         <button type="submit">Login</button>
       </form>

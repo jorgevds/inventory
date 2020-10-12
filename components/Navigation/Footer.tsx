@@ -3,8 +3,8 @@ import Link from "next/link";
 const Footer = () => {
   return (
     <footer>
-      <nav>
-        <ul>
+      <nav className="flex justify-center">
+        <ul className="inline-block px-6">
           <li>
             <Link href="/">
               <a>Home</a>
@@ -26,7 +26,9 @@ const Footer = () => {
             </Link>
           </li>
           <li>Copyright © 2020. All rights reserved.</li>
-          <li>
+          </ul>
+          <ul className="inline-block">
+          <li className="py-4">
             <Link href="/users/register">
               <a>register</a>
             </Link>

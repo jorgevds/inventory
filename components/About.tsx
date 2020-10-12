@@ -1,6 +1,6 @@
 const About = () => {
   return (
-    <section>
+    <section className="flex-1">
       <h1>Over ons</h1>
       <div>
         <h3>Contractor™ is een online bron van stielmensen uit elk beroep</h3>

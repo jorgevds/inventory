@@ -29,7 +29,7 @@ const Form: React.FC<Props> = () => {
   ) => {};
 
   return (
-    <div>
+    <div className="flex-1">
       <form onSubmit={handleSubmit}>
         <div>
           <label htmlFor="titel">Titel</label>

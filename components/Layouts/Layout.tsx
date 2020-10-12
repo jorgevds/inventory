@@ -87,7 +87,7 @@ const Layout = ({ children, title = "Inventory" }) => {
         />
       </Head>
       <Header loggedIn={loggedIn} />
-      <h1 className="text-2xl font-title">Inventory</h1>
+      <h1 className="py-4 text-4xl text-center font-title">Inventory</h1>
       {children}
       <Footer />
     </>

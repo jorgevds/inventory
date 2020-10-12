@@ -1,7 +1,9 @@
 import { useState } from "react";
 import fire from "../../config/fire-config";
+import { useRouter } from "next/router";
 
 const Logout = () => {
+  const router = useRouter();
   const [notification, setNotification] = useState("");
 
   const handleLogout = () => {
@@ -9,13 +11,12 @@ const Logout = () => {
       .auth()
       .signOut()
       .then(() => {
-        setNotification("Logged out");
-        setTimeout(() => {
-          setNotification("");
-        }, 2000);
+        setNotification("You have successfully logged out");
+          router.push("/"); 
       });
   };
-  return <button onClick={handleLogout}>Logout</button>;
+
+  return <button onClick={handleLogout} className="flex justify-end flex-auto py-4">Logout</button>;
 };
 
 export default Logout;
