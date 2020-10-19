@@ -53,28 +53,27 @@ const EnterForm: React.FC<Props> = ({ loggedIn }) => {
   };
 
   return (
-
-  
-    <div className="flex-1">
-      <h2>Enter items into your inventory</h2>
-      <h3>
+    <div className="flex flex-col w-3/5 min-h-screen py-8 m-auto">
+      <span className="m-auto mb-8">
+      <h2 className="my-4">Enter items into your inventory</h2>
+      <h3 className="my-4">
         Hit <span>submit</span> to register your inventory items
       </h3>
+      </span>
 
-      <form onSubmit={handleSubmit}>
-        <label>
+      <form onSubmit={handleSubmit} className="flex flex-col justify-between flex-1 w-3/5 p-8 pt-12 m-auto border-4 border-solid rounded-lg border-blue">
+        <label className="flex justify-between m-8">
           Enter your item
           <input
             type="text"
-            className="numberInput"
             value={itemCategory}
             required
             onChange={(event: React.ChangeEvent<HTMLInputElement>): void =>
               setItemCategory(event.target.value)
             }
-          />
+            className="transition-all duration-200 ease-in border-b border-burgundy"/>
         </label>
-        <label>
+        <label className="flex justify-between m-8">
           Specify the amount
           <input
             type="number"
@@ -83,9 +82,9 @@ const EnterForm: React.FC<Props> = ({ loggedIn }) => {
             onChange={(event: React.ChangeEvent<HTMLInputElement>): void =>
               setItemAmount(parseInt(event.target.value))
             }
-          ></input>
+          className="w-12 text-center transition-all duration-200 ease-in border-b border-burgundy"></input>
         </label>
-        <label>
+        <label className="flex justify-between m-8">
           Choose a type
           <select
             name="type"
@@ -94,7 +93,7 @@ const EnterForm: React.FC<Props> = ({ loggedIn }) => {
               setItemType(event.target.value)
             }
             defaultValue={"default"}
-          >
+            className="mb-16 transition-all duration-200 ease-in border-b border-burgundy">
             <option value="default" disabled>
               Type of item purchased
             </option>
@@ -107,7 +106,9 @@ const EnterForm: React.FC<Props> = ({ loggedIn }) => {
           </select>
         </label>
 
-        <button type="submit" name="Enter">
+        <button type="submit" 
+        name="Enter"
+        className="w-4/5 p-2 px-4 m-auto text-white transition-all duration-300 ease-in-out transform border-2 border-solid rounded-lg active:bg-blueDark focus:outline-none focus:shadow-outline border-purple hover:transition-all bg-blue active:translate-y-1 hover:scale-105">
           Enter
         </button>
       </form>
