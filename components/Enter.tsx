@@ -35,7 +35,7 @@ const EnterForm: React.FC<Props> = ({ loggedIn }) => {
     event.preventDefault();
     // collections only take documents: every user would need their own collection which stores all items,
     // which then creates a doc for each since a doc can only contain 1mb max
-    fire.firestore().collection(`${user.email}`).add({
+    fire.firestore().collection(`${user.email}`).doc(itemCategory).set({
       item: itemCategory,
       amount: itemAmount,
       type: itemType,
@@ -53,16 +53,20 @@ const EnterForm: React.FC<Props> = ({ loggedIn }) => {
   };
 
   return (
-    <div className="flex flex-col w-3/5 min-h-screen py-8 m-auto">
-      <span className="m-auto mb-8">
-      <h2 className="my-4">Enter items into your inventory</h2>
-      <h3 className="my-4">
-        Hit <span>submit</span> to register your inventory items
-      </h3>
-      </span>
+    <section className="flex flex-col flex-1 pb-8 m-auto minmd:w-3/5">
+      <article className="m-auto mb-8">
+        <h2 className="my-4">Enter items into your inventory</h2>
+        <h3 className="my-4">
+          Hit <span className="text-blue">submit</span> to register your
+          inventory items
+        </h3>
+      </article>
 
-      <form onSubmit={handleSubmit} className="flex flex-col justify-between flex-1 w-3/5 p-8 pt-12 m-auto border-4 border-solid rounded-lg border-blue">
-        <label className="flex justify-between m-8">
+      <form
+        onSubmit={handleSubmit}
+        className="flex flex-col flex-1 pt-12 m-auto border-solid lg:p-4 md:p-8 minmd:rounded-lg minmd:border-4 minmd:justify-between minlg:w-3/5 border-blue sm:w-screen sm:border-t-4 sm:border-b-4"
+      >
+        <label className="flex justify-between mx-4 my-8 minlg:mx-6 minlg:my-8 sm:flex-col">
           Enter your item
           <input
             type="text"
@@ -71,9 +75,10 @@ const EnterForm: React.FC<Props> = ({ loggedIn }) => {
             onChange={(event: React.ChangeEvent<HTMLInputElement>): void =>
               setItemCategory(event.target.value)
             }
-            className="transition-all duration-200 ease-in border-b border-burgundy"/>
+            className="transition-all duration-200 ease-in border-b minmd:w-3/5 sm:mt-8 border-burgundy"
+          />
         </label>
-        <label className="flex justify-between m-8">
+        <label className="flex justify-between mx-4 my-8 minlg:mx-6 minlg:my-8 sm:flex-col">
           Specify the amount
           <input
             type="number"
@@ -82,9 +87,10 @@ const EnterForm: React.FC<Props> = ({ loggedIn }) => {
             onChange={(event: React.ChangeEvent<HTMLInputElement>): void =>
               setItemAmount(parseInt(event.target.value))
             }
-          className="w-12 text-center transition-all duration-200 ease-in border-b border-burgundy"></input>
+            className="text-center transition-all duration-200 ease-in border-b sm:mt-8 minmd:w-1/5 border-burgundy"
+          ></input>
         </label>
-        <label className="flex justify-between m-8">
+        <label className="flex justify-between mx-4 my-8 minlg:mx-6 minlg:my-8 sm:flex-col">
           Choose a type
           <select
             name="type"
@@ -93,7 +99,8 @@ const EnterForm: React.FC<Props> = ({ loggedIn }) => {
               setItemType(event.target.value)
             }
             defaultValue={"default"}
-            className="mb-16 transition-all duration-200 ease-in border-b border-burgundy">
+            className="mb-16 transition-all duration-200 ease-in border-b minmd:w-3/5 sm:mt-8 border-burgundy"
+          >
             <option value="default" disabled>
               Type of item purchased
             </option>
@@ -106,13 +113,15 @@ const EnterForm: React.FC<Props> = ({ loggedIn }) => {
           </select>
         </label>
 
-        <button type="submit" 
-        name="Enter"
-        className="w-4/5 p-2 px-4 m-auto text-white transition-all duration-300 ease-in-out transform border-2 border-solid rounded-lg active:bg-blueDark focus:outline-none focus:shadow-outline border-purple hover:transition-all bg-blue active:translate-y-1 hover:scale-105">
+        <button
+          type="submit"
+          name="Enter"
+          className="w-4/5 px-4 py-2 m-auto text-white transition-all duration-300 ease-in-out transform border-2 border-solid rounded-lg minlg:mb-6 active:bg-blueDark focus:outline-none focus:shadow-outline border-purple hover:transition-all bg-blue active:translate-y-1 hover:scale-105"
+        >
           Enter
         </button>
       </form>
-    </div>
+    </section>
   );
 };
 

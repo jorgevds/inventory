@@ -1,4 +1,5 @@
 import { useState, useEffect } from "react";
+import Link from "next/link";
 import fire from "../config/fire-config";
 
 const Inventory = () => {
@@ -20,17 +21,25 @@ const Inventory = () => {
         {
           mounted ? setItemsList(itemsList) : null;
         }
-        console.log(itemsList);
       });
     return () => (mounted = false);
   }, []);
 
   return (
-    <>
-      <ul>
-        {itemsList.map((item) => (
-          <li key={item.id}>
-            {item.item} {item.amount} {item.type}
+    <ul className="flex flex-col">
+      {!itemsList.length ? (
+        <div className="m-auto mt-16 text-xl lg:text-center">
+          Click <span className="text-blue">enter</span> or the{" "}
+          <span className="text-blue">plus symbol</span> below to get started!
+        </div>
+      ) : (
+        itemsList.map((item) => (
+          <li key={item.id} className="flex mt-8 text-lg minmd:mx-12 md:mx-2">
+            <div className={item.amount == 0 ? "text-burgundy" : null}>
+              <span className="pr-4">{item.item}</span>{" "}
+              <span className="minmd:px-4">{item.amount}</span>{" "}
+              <span className="minmd:px-4">{item.type}</span>
+            </div>
             <button
               onClick={(event) =>
                 fire
@@ -39,6 +48,7 @@ const Inventory = () => {
                   .doc(item.id)
                   .delete()
               }
+              className="px-4 mx-8 ml-auto text-white transition-all duration-200 ease-in-out border-2 border-solid rounded-lg sm:px-2 hover:transition-all border-burgundy bg-mauve hover:bg-burgundy"
             >
               Delete
             </button>
@@ -54,11 +64,20 @@ const Inventory = () => {
                     amount: `${event.target.value}`,
                   })
               }
+              className="w-12 text-center border-b border-burgundy"
             />
           </li>
-        ))}
+        ))
+      )}
+      <ul className="flex mt-20 justify-evenly">
+        <li className="w-4/5 border-b-2 border-blue"></li>
+        <li className="px-2 text-xl transition-all duration-200 ease-in-out border-2 border-solid rounded-lg cursor-pointer text-blue hover:text-mauve border-blue">
+          <Link href="/enter">
+            <a>+</a>
+          </Link>
+        </li>
       </ul>
-    </>
+    </ul>
   );
 };
 
