@@ -3,6 +3,7 @@ import Header from "../Navigation/Header";
 import Footer from "../Navigation/Footer";
 import fire from "../../config/fire-config";
 import React, { useState } from "react";
+import Link from "next/link";
 
 const Layout = ({ children, title = "Inventory" }) => {
   const [loggedIn, setLoggedIn] = useState<boolean>(false);
@@ -33,7 +34,10 @@ const Layout = ({ children, title = "Inventory" }) => {
         <title>{title}</title>
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
         <link rel="stylesheet" href="style.css" />
-        <link href="https://fonts.googleapis.com/css2?family=Open+Sans&family=Sansita+Swashed:wght@300&display=swap" rel="stylesheet"/>
+        <link
+          href="https://fonts.googleapis.com/css2?family=Open+Sans&family=Sansita+Swashed:wght@300&display=swap"
+          rel="stylesheet"
+        />
         <link
           rel="apple-touch-icon"
           sizes="60x60"
@@ -87,7 +91,6 @@ const Layout = ({ children, title = "Inventory" }) => {
         />
       </Head>
       <Header loggedIn={loggedIn} />
-      <h1 className="py-4 text-4xl text-center font-title">Inventory</h1>
       {children}
       <Footer />
     </>

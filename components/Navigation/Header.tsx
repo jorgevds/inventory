@@ -3,16 +3,10 @@ import Logout from "../Authentication/Logout";
 
 const Header = ({ loggedIn }) => {
   return (
-    <header>
-      <nav className="flex w-3/5 m-auto">
-        <ul className="flex py-4">
-          <li className="px-4">
-            <Link href="/">
-              <a>Home</a>
-            </Link>
-          </li>
-
-          <li className="px-4">
+    <header className="sticky top-0 bg-white opacity-75">
+      <nav className="flex m-auto minmd:w-3/5">
+        <ul className="flex py-6">
+          <li className="minmd:px-4 sm:px-2">
             {loggedIn ? (
               <Link href="/enter">
                 <a>Enter</a>
@@ -23,34 +17,39 @@ const Header = ({ loggedIn }) => {
               </Link>
             )}
           </li>
-          <li className="px-4">
+          <li className="minmd:px-4 sm:px-2">
             <Link href="/about">
               <a>About</a>
             </Link>
           </li>
-          <li className="px-4">
+          <li className="minmd:px-4 sm:px-2">
             <Link href="/contact">
               <a>Contact</a>
             </Link>
           </li>
+        </ul>
+        {!loggedIn ? (
+          <ul className="flex justify-end flex-auto py-6 sm:justify-evenly">
+            <li className="minmd:px-4">
+              <Link href="/users/register">
+                <a>register</a>
+              </Link>
+            </li>
+            <li className="minmd:px-4">
+              <Link href="/users/login">
+                <a>login</a>
+              </Link>
+            </li>
           </ul>
-          {!loggedIn ? (
-            <ul className="flex justify-end flex-auto py-4">
-              <li className="px-4">
-                <Link href="/users/register">
-                  <a>register</a>
-                </Link>
-              </li>
-              <li className="px-4">
-                <Link href="/users/login">
-                  <a>login</a>
-                </Link>
-              </li>
-            </ul>
-          ) : (
-            <Logout />
-          )}
+        ) : (
+          <Logout />
+        )}
       </nav>
+      <Link href="/">
+        <a className="pb-4 m-auto top-1/2">
+          <h1 className="mb-12 text-4xl text-center font-title">Inventory</h1>
+        </a>
+      </Link>
     </header>
   );
 };
