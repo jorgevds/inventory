@@ -22,75 +22,100 @@ const Form: React.FC<Props> = () => {
     event.preventDefault();
     setSubmit(true);
   };
-  const handleSelectChange = (event: React.FormEvent<HTMLSelectElement>) => {};
-  const handleInputChange = (event: React.FormEvent<HTMLInputElement>) => {};
-  const handleTextAreaChange = (
-    event: React.FormEvent<HTMLTextAreaElement>
-  ) => {};
 
   return (
-    <div className="flex-1">
-      <form onSubmit={handleSubmit}>
-        <div>
-          <label htmlFor="titel">Titel</label>
-          <select
-            name="titel"
-            required
-            value={title}
-            onChange={handleSelectChange}
-          >
-            <option>Sir</option>
-            <option>Madam</option>
-            <option>Other</option>
-          </select>
-        </div>
-        <label htmlFor="voornaam">Voornaam</label>
+    <section>
+      <form
+        onSubmit={handleSubmit}
+        className="flex flex-col justify-between flex-1 p-8 pt-12 m-auto border-solid sm:border-t-4 sm:border-b-4 minmd:rounded-lg minmd:border-4 minlg:w-3/5 md:w-4/5 sm:w-screen border-blue"
+      >
+        <label htmlFor="title" className="flex justify-between my-4">
+          Title
+        </label>
+        <select
+          name="title"
+          required
+          value={title}
+          onChange={(event: React.ChangeEvent<HTMLSelectElement>): void =>
+            setTitle(event.target.value)
+          }
+          className="mb-4 transition-all duration-200 ease-in border-b border-burgundy"
+        >
+          <option defaultChecked disabled value="">
+            Select your title
+          </option>
+          <option>Sir</option>
+          <option>Madam</option>
+          <option>Other</option>
+        </select>
+        <label htmlFor="firstName" className="flex justify-between my-4">
+          Name
+        </label>
         <input
           type="text"
-          name="voornaam"
-          placeholder="voornaam"
+          name="firstName"
+          placeholder="first name"
           value={firstName}
-          onChange={handleInputChange}
+          onChange={(event: React.ChangeEvent<HTMLInputElement>): void =>
+            setFirstName(event.target.value)
+          }
+          className="mb-4 transition-all duration-200 ease-in border-b border-burgundy"
         />
-        <label htmlFor="achternaam">Naam</label>
+        <label htmlFor="lastName" className="flex justify-between my-4">
+          Last name
+        </label>
         <input
           type="text"
-          name="achternaam"
-          placeholder="naam"
+          name="lastName"
+          placeholder="last name"
           value={lastName}
-          onChange={handleInputChange}
+          onChange={(event: React.ChangeEvent<HTMLInputElement>): void =>
+            setLastName(event.target.value)
+          }
+          className="mb-4 transition-all duration-200 ease-in border-b border-burgundy"
         />
-        <label htmlFor="email">Email</label>
+        <label htmlFor="email" className="flex justify-between my-4">
+          Email
+        </label>
         <input
           type="email"
           name="email"
           placeholder="email"
           required
           value={email}
-          onChange={handleInputChange}
+          onChange={(event: React.ChangeEvent<HTMLInputElement>): void =>
+            setEmail(event.target.value)
+          }
+          className="mb-4 transition-all duration-200 ease-in border-b border-burgundy"
         />
-        <label htmlFor="bericht">Uw bericht</label>
+        <label htmlFor="message" className="flex justify-between my-4">
+          Your message
+        </label>
         <textarea
-          name="bericht"
-          placeholder="hier uw boodschap"
+          name="message"
+          placeholder="Leave your message for our team here"
           required
           value={message}
-          onChange={handleTextAreaChange}
+          onChange={(event: React.ChangeEvent<HTMLTextAreaElement>): void =>
+            setMessage(event.target.value)
+          }
+          className="mb-16 transition-all duration-200 ease-in border-b border-burgundy min-h-1/8"
         />
-        <button type="submit">Verzend</button>
+        <button
+          type="submit"
+          name="Send"
+          className="w-4/5 px-4 py-2 m-auto text-white transition-all duration-300 ease-in-out transform border-2 border-solid rounded-lg active:bg-blueDark focus:outline-none focus:shadow-outline border-purple hover:transition-all bg-blue active:translate-y-1 hover:scale-105"
+        >
+          Send
+        </button>
       </form>
       {submit ? (
         <h3>
           Bedankt voor uw bericht! Wij gaan aan het werk en geven u zo snel
           mogelijk een antwoord.
         </h3>
-      ) : (
-        <h3>
-          Gelieve een titel bovenaan te kiezen en een boodschap achter te laten.
-          Om u van een antwoord te voorzien, hebben we een emailadres nodig.
-        </h3>
-      )}
-    </div>
+      ) : null}
+    </section>
   );
 };
 
