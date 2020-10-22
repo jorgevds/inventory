@@ -19,7 +19,7 @@ const Signin = () => {
       .auth()
       .signInWithEmailAndPassword(username, password)
       .catch((err) => {
-        console.log(err.code, err.message);
+        // console.log(err.code, err.message);
         setNotification(err.message);
         setTimeout(() => {
           setNotification("");

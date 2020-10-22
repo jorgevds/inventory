@@ -1,28 +1,31 @@
 import { useState, useEffect } from "react";
 import fire from "../config/fire-config";
 
-const ShoppingList = () => {
+const ShoppingList = ({ loggedIn }) => {
   const [groceryList, setGroceryList] = useState([]);
 
   const user = fire.auth().currentUser;
 
-  useEffect(() => {
-    let mounted = true;
-    fire
-      .firestore()
-      .collection(`${user.email}`)
-      .where("amount", "==", "0")
-      .onSnapshot(function (querySnapshot) {
-        let groceries = [];
-        querySnapshot.forEach(function (doc) {
-          groceries.push(doc.data());
-        });
-        {
-          mounted ? setGroceryList(groceries) : null;
-        }
-      });
-    return () => (mounted = false);
-  }, []);
+  {
+    loggedIn &&
+      useEffect(() => {
+        let mounted = true;
+        fire
+          .firestore()
+          .collection(`${user.email}`)
+          .where("amount", "==", "0")
+          .onSnapshot(function (querySnapshot) {
+            let groceries = [];
+            querySnapshot.forEach(function (doc) {
+              groceries.push(doc.data());
+            });
+            {
+              mounted ? setGroceryList(groceries) : null;
+            }
+          });
+        return () => (mounted = false);
+      }, []);
+  }
 
   return (
     <ul className="flex flex-col">

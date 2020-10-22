@@ -28,9 +28,9 @@ const CupboardAndCart = ({ loggedIn }) => {
       <div className="flex flex-col w-3/5 min-h-screen m-auto border-solid minmd:rounded-lg minmd:border-4 border-blue sm:w-screen sm:border-t-4 sm:border-b-4">
         {loggedIn ? (
           toggleInventory ? (
-            <Inventory />
+            <ShoppingList loggedIn={loggedIn} />
           ) : (
-            <ShoppingList />
+            <Inventory loggedIn={loggedIn} />
           )
         ) : (
           <div className="flex m-auto mt-16 text-xl">

@@ -37,7 +37,7 @@ const RegisterUser = () => {
         fire.firestore().collection(`Users`).doc(email).set(account);
       })
       .catch((err) => {
-        console.log(err.code, err.message);
+        // console.log(err.code, err.message);
       });
 
     router.push("/");

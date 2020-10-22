@@ -2,28 +2,31 @@ import { useState, useEffect } from "react";
 import Link from "next/link";
 import fire from "../config/fire-config";
 
-const Inventory = () => {
+const Inventory = ({ loggedIn }) => {
   const [itemsList, setItemsList] = useState([]);
 
   const user = fire.auth().currentUser;
 
-  useEffect(() => {
-    let mounted = true;
-    fire
-      .firestore()
-      .collection(`${user.email}`)
-      .onSnapshot((snap) => {
-        const itemsList = snap.docs.map((doc) => ({
-          id: doc.id,
-          ...doc.data(),
-        }));
+  {
+    loggedIn &&
+      useEffect(() => {
+        let mounted = true;
+        fire
+          .firestore()
+          .collection(`${user.email}`)
+          .onSnapshot((snap) => {
+            const itemsList = snap.docs.map((doc) => ({
+              id: doc.id,
+              ...doc.data(),
+            }));
 
-        {
-          mounted ? setItemsList(itemsList) : null;
-        }
-      });
-    return () => (mounted = false);
-  }, []);
+            {
+              mounted ? setItemsList(itemsList) : null;
+            }
+          });
+        return () => (mounted = false);
+      }, []);
+  }
 
   return (
     <ul className="flex flex-col">
@@ -71,9 +74,11 @@ const Inventory = () => {
       )}
       <ul className="flex mt-20 justify-evenly">
         <li className="w-4/5 border-b-2 border-blue"></li>
-        <li className="px-2 text-xl transition-all duration-200 ease-in-out border-2 border-solid rounded-lg cursor-pointer text-blue hover:text-mauve border-blue">
+        <li>
           <Link href="/enter">
-            <a>+</a>
+            <a className="px-2 text-xl transition-all duration-200 ease-in-out border-2 border-solid rounded-lg cursor-pointer text-blue hover:text-mauve border-blue">
+              +
+            </a>
           </Link>
         </li>
       </ul>

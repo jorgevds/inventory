@@ -41,12 +41,6 @@ const EnterForm: React.FC<Props> = ({ loggedIn }) => {
       type: itemType,
     });
 
-    console.log({
-      title: itemCategory,
-      content: itemAmount,
-      type: itemType,
-    });
-
     setItemCategory("");
     setItemAmount(1);
     setSubmit(true);
