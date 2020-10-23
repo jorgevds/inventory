@@ -11,15 +11,15 @@ const CupboardAndCart = ({ loggedIn }) => {
 
   return (
     <div className="flex flex-col flex-1 mt-12">
-      <div className="flex justify-between w-3/5 px-6 m-auto sm:w-full">
+      <div className="flex justify-between w-3/5 px-12 m-auto sm:w-full">
         <button
-          className="px-4 pt-2 border-t-2 border-l-2 border-r-2 border-solid rounded-md border-blue"
+          className="px-8 py-2 pt-4 border-t-2 border-l-2 border-r-2 border-solid rounded-t-xl border-blue"
           onClick={toggleButton}
         >
           Inventory
         </button>
         <button
-          className="px-4 pt-2 border-t-2 border-l-2 border-r-2 border-solid rounded-md border-purple"
+          className="px-8 py-2 pt-4 border-t-2 border-l-2 border-r-2 border-solid rounded-t-xl border-purple"
           onClick={toggleButton}
         >
           Groceries

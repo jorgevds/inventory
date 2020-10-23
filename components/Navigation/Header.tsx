@@ -32,12 +32,12 @@ const Header = ({ loggedIn }) => {
           <ul className="flex justify-end flex-auto py-6 sm:justify-evenly">
             <li className="minmd:px-4">
               <Link href="/users/register">
-                <a>register</a>
+                <a>Register</a>
               </Link>
             </li>
             <li className="minmd:px-4">
               <Link href="/users/login">
-                <a>login</a>
+                <a>Login</a>
               </Link>
             </li>
           </ul>

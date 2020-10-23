@@ -72,7 +72,7 @@ const Inventory = ({ loggedIn }) => {
           </li>
         ))
       )}
-      <ul className="flex mt-20 justify-evenly">
+      <ul className="flex my-20 justify-evenly">
         <li className="w-4/5 border-b-2 border-blue"></li>
         <li>
           <Link href="/enter">

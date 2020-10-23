@@ -49,7 +49,10 @@ const ShoppingList = ({ loggedIn }) => {
                     })
                 }
               >
-                <p>{item.item}</p> <p>0</p>
+                <p>{item.item}</p>
+                <p className="px-2 text-xl transition-all duration-200 ease-in-out border-2 border-solid rounded-lg cursor-pointer text-blue hover:text-mauve border-blue">
+                  +
+                </p>
               </button>
             </div>
           </li>

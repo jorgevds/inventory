@@ -60,6 +60,14 @@ module.exports = {
       sm: { max: "639px" },
       // => @media (max-width: 639px) { ... }
     },
+    borderRadius: {
+      none: "0",
+      sm: "0.125rem",
+      md: "0.375rem",
+      lg: "0.5rem",
+      xl: "2rem",
+      full: "9999px",
+    },
     plugins: [],
   },
 };

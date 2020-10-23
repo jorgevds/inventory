@@ -21,7 +21,7 @@ const EnterForm: React.FC<Props> = ({ loggedIn }) => {
   const user = fire.auth().currentUser;
 
   const itemTypeList = [
-    { id: 1, name: "unit" },
+    { id: 1, name: "unit(s)" },
     { id: 2, name: "kg" },
     { id: 3, name: "lb" },
     { id: 4, name: "liter" },
@@ -29,6 +29,8 @@ const EnterForm: React.FC<Props> = ({ loggedIn }) => {
     { id: 6, name: "pack" },
     { id: 7, name: "dozen" },
     { id: 8, name: "box" },
+    { id: 9, name: "bag" },
+    { id: 10, name: "bottle" },
   ];
 
   const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
