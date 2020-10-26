@@ -31,6 +31,8 @@ const EnterForm: React.FC<Props> = ({ loggedIn }) => {
     { id: 8, name: "box" },
     { id: 9, name: "bag" },
     { id: 10, name: "bottle" },
+    { id: 11, name: "jar" },
+    { id: 12, name: "jug" },
   ];
 
   const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {

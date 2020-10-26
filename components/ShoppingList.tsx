@@ -35,7 +35,10 @@ const ShoppingList = ({ loggedIn }) => {
         </div>
       ) : (
         groceryList.map((item) => (
-          <li key={item.item} className="flex flex-col mx-16 mt-8 text-lg">
+          <li
+            key={item.item}
+            className="flex flex-col mt-8 text-lg sm:mx-8 minmd:mx-16"
+          >
             <div>
               <button
                 className="flex justify-between w-full"
@@ -50,7 +53,7 @@ const ShoppingList = ({ loggedIn }) => {
                 }
               >
                 <p>{item.item}</p>
-                <p className="px-2 text-xl transition-all duration-200 ease-in-out border-2 border-solid rounded-lg cursor-pointer text-blue hover:text-mauve border-blue">
+                <p className="px-2 text-xl font-bold transition-all duration-200 ease-in-out border-2 border-solid rounded-lg cursor-pointer text-blue hover:text-mauve border-blue">
                   +
                 </p>
               </button>
