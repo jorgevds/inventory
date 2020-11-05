@@ -1,5 +1,5 @@
 import Layout from "../components/Layouts/Layout";
-import Contact from "../components/Contact";
+import Contact from "../components/Contact/Contact";
 
 export default function ContactPage({
   firstName,
@@ -9,7 +9,7 @@ export default function ContactPage({
   title,
 }) {
   return (
-    <Layout title={"Inventory: Contact"}>
+    <Layout title={": contact"}>
       <Contact
         firstName={firstName}
         lastName={lastName}

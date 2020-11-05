@@ -1,5 +1,5 @@
 import { useState, useEffect } from "react";
-import fire from "../config/fire-config";
+import fire from "../../config/fire-config";
 
 const ShoppingList = ({ loggedIn }) => {
   const [groceryList, setGroceryList] = useState([]);

@@ -21,7 +21,7 @@
     "pages/index.tsx",
     "pages/_app.tsx",
     "pages/_document.tsx",
-    "pages/users/register.js"
+    "pages/users/register.tsx"
   ],
   "exclude": ["node_modules"]
 }

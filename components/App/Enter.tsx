@@ -1,5 +1,5 @@
 import { useState } from "react";
-import fire from "../config/fire-config";
+import fire from "../../config/fire-config";
 import { useRouter } from "next/router";
 
 interface Props {
@@ -55,7 +55,7 @@ const EnterForm: React.FC<Props> = ({ loggedIn }) => {
       <article className="m-auto mb-8">
         <h2 className="my-4">Enter items into your inventory</h2>
         <h3 className="my-4">
-          Hit <span className="text-blue">submit</span> to register your
+          Hit <span className="text-blue">enter</span> to register your
           inventory items
         </h3>
       </article>
@@ -70,6 +70,7 @@ const EnterForm: React.FC<Props> = ({ loggedIn }) => {
             type="text"
             value={itemCategory}
             required
+            autoFocus
             onChange={(event: React.ChangeEvent<HTMLInputElement>): void =>
               setItemCategory(event.target.value)
             }

@@ -1,6 +1,6 @@
 import Layout from "../components/Layouts/Layout";
-import Landing from "../components/LandingPage";
-import CupboardAndCart from "../components/CupboardAndCart";
+import Landing from "../components/LandingPage/LandingPage";
+import CupboardAndCart from "../components/App/CupboardAndCart";
 import fire from "../config/fire-config";
 import { useState } from "react";
 
@@ -22,7 +22,7 @@ export default function Home() {
   });
 
   return (
-    <Layout>
+    <Layout title={": home"}>
       <div className="flex flex-1 min-h-screen">
         {loggedIn ? (
           <CupboardAndCart loggedIn={loggedIn} />

@@ -3,7 +3,7 @@ import RegisterUser from "../../components/Authentication/RegisterUser";
 
 const Register = () => {
   return (
-    <Layout>
+    <Layout title={": register"}>
       <RegisterUser />
     </Layout>
   );

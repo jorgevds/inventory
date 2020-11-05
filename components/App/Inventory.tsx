@@ -1,6 +1,6 @@
 import { useState, useEffect } from "react";
 import Link from "next/link";
-import fire from "../config/fire-config";
+import fire from "../../config/fire-config";
 
 const Inventory = ({ loggedIn }) => {
   const [itemsList, setItemsList] = useState([]);

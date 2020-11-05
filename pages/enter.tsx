@@ -1,9 +1,9 @@
 import Layout from "../components/Layouts/Layout";
-import EnterForm from "../components/Enter";
+import EnterForm from "../components/App/Enter";
 
 const EnterPage = () => {
   return (
-    <Layout title={"Inventory: enter your inventory"}>
+    <Layout title={": enter items"}>
       <EnterForm />
     </Layout>
   );

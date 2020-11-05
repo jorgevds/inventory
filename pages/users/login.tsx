@@ -1,9 +1,9 @@
 import Layout from "../../components/Layouts/Layout";
 import Signin from "../../components/Authentication/Signin";
 
-const Login = ({ loggedIn }) => {
+const Login = () => {
   return (
-    <Layout loggedIn={loggedIn}>
+    <Layout title={": login"}>
       <Signin />
     </Layout>
   );

@@ -3,7 +3,7 @@ import About from "../components/About";
 
 export default function AboutPage() {
   return (
-    <Layout title={"Inventory: About"}>
+    <Layout title={": about"}>
       <About />
     </Layout>
   );
