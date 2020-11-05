@@ -1,7 +1,10 @@
 import Link from "next/link";
+import { useRouter } from "next/router";
 import Logout from "../Authentication/Logout";
 
 const Header = ({ loggedIn }) => {
+  const router = useRouter();
+
   return (
     <header className="sticky top-0 bg-white opacity-75">
       <nav className="flex m-auto minmd:w-3/5">
@@ -9,7 +12,9 @@ const Header = ({ loggedIn }) => {
           <li className="minmd:px-4 sm:px-2">
             {loggedIn ? (
               <Link href="/enter">
-                <a>Enter</a>
+                <a className={router.pathname == "/enter" ? "active" : null}>
+                  Enter
+                </a>
               </Link>
             ) : (
               <Link href="/users/login">
@@ -19,12 +24,16 @@ const Header = ({ loggedIn }) => {
           </li>
           <li className="minmd:px-4 sm:px-2">
             <Link href="/about">
-              <a>About</a>
+              <a className={router.pathname == "/about" ? "active" : null}>
+                About
+              </a>
             </Link>
           </li>
           <li className="minmd:px-4 sm:px-2">
             <Link href="/contact">
-              <a>Contact</a>
+              <a className={router.pathname == "/contact" ? "active" : null}>
+                Contact
+              </a>
             </Link>
           </li>
         </ul>
@@ -32,12 +41,24 @@ const Header = ({ loggedIn }) => {
           <ul className="flex justify-end flex-auto py-6 sm:justify-evenly">
             <li className="minmd:px-4">
               <Link href="/users/register">
-                <a>Register</a>
+                <a
+                  className={
+                    router.pathname == "/users/register" ? "active" : null
+                  }
+                >
+                  Register
+                </a>
               </Link>
             </li>
             <li className="minmd:px-4">
               <Link href="/users/login">
-                <a>Login</a>
+                <a
+                  className={
+                    router.pathname == "/users/login" ? "active" : null
+                  }
+                >
+                  Login
+                </a>
               </Link>
             </li>
           </ul>
