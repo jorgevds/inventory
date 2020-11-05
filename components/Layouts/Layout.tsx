@@ -3,10 +3,10 @@ import Header from "../Navigation/Header";
 import Footer from "../Navigation/Footer";
 import fire from "../../config/fire-config";
 import React, { useState } from "react";
-import Link from "next/link";
 
-const Layout = ({ children, title = "Inventory" }) => {
+const Layout = ({ children, title = "" }) => {
   const [loggedIn, setLoggedIn] = useState<boolean>(false);
+  const fullTitle = "Inventory";
 
   fire.auth().onAuthStateChanged((user) => {
     if (user) {
@@ -31,7 +31,7 @@ const Layout = ({ children, title = "Inventory" }) => {
   return (
     <>
       <Head>
-        <title>{title}</title>
+        <title>{fullTitle + title}</title>
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
         <link rel="stylesheet" href="style.css" />
         <link
