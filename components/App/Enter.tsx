@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import fire from "../../config/fire-config";
 import { useRouter } from "next/router";
 
@@ -49,6 +49,12 @@ const EnterForm: React.FC<Props> = ({ loggedIn }) => {
     setItemAmount(1);
     setSubmit(true);
   };
+
+  useEffect(() => {
+    if (!loggedIn) {
+      router.push("/users/login");
+    }
+  }, []);
 
   return (
     <section className="flex flex-col flex-1 pb-8 m-auto minmd:w-3/5">
