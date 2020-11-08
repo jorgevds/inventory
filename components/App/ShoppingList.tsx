@@ -37,7 +37,7 @@ const ShoppingList = ({ loggedIn }) => {
         groceryList.map((item) => (
           <li
             key={item.item}
-            className="flex flex-col mt-8 text-lg sm:mx-8 minmd:mx-16"
+            className="flex flex-col my-8 text-lg sm:mx-8 minmd:mx-16"
           >
             <div>
               <button

@@ -68,7 +68,7 @@ const Header = ({ loggedIn }) => {
       </nav>
       <Link href="/">
         <a className="pb-4 m-auto top-1/2">
-          <h1 className="mb-12 text-4xl text-center font-title">Inventory</h1>
+          <h1 className="pb-8 text-4xl text-center font-title">Inventory</h1>
         </a>
       </Link>
     </header>

@@ -1,8 +1,4 @@
     @tailwind base;
-    #__next {
-        @apply flex flex-col h-auto min-h-screen;
-    }
-
     h2 {
         @apply text-xl;
     }

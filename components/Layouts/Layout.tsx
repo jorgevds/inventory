@@ -33,7 +33,6 @@ const Layout = ({ children, title = "" }) => {
       <Head>
         <title>{fullTitle + title}</title>
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-        <link rel="stylesheet" href="style.css" />
         <link
           href="https://fonts.googleapis.com/css2?family=Open+Sans&family=Sansita+Swashed:wght@300&display=swap"
           rel="stylesheet"
@@ -66,11 +65,8 @@ const Layout = ({ children, title = "" }) => {
         <link rel="manifest" href="%PUBLIC_URL%/manifest.json" />
 
         <meta name="description" content="description for your website" />
-        <meta property="og:title" content="FB and twitter title" />
-        <meta
-          property="og:site_name"
-          content="optional tag for FB with expanded site title"
-        />
+        <meta property="og:title" content="Inventory" />
+        <meta property="og:site_name" content="Grocery lists made easy!" />
         <meta
           property="og:description"
           content="description for your website for FB and twitter"
