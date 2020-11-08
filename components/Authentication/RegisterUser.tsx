@@ -55,26 +55,29 @@ const RegisterUser = () => {
         onSubmit={handleLogin}
         className="flex flex-col minlg:w-2/5 md:w-4/5"
       >
-        <label htmlFor={email}>Email:</label>
+        <label htmlFor="email">Email:</label>
         <input
           type="text"
           value={email}
+          name="email"
           onChange={({ target }) => setEmail(target.value)}
           autoComplete="new-password"
           className="p-4 mb-12 transition-all duration-200 ease-in bg-white border-b border-burgundy"
         />
-        <label htmlFor={password}>Password:</label>
+        <label htmlFor="password">Password:</label>
         <input
           type="password"
           value={password}
+          name="password"
           onChange={({ target }) => setPassword(target.value)}
           autoComplete="new-password"
           className="p-4 mb-12 transition-all duration-200 ease-in bg-white border-b border-burgundy"
         />
-        <label htmlFor={passConf}>Password confirmation:</label>
+        <label htmlFor="passConf">Password confirmation:</label>
         <input
           type="password"
           value={passConf}
+          name="passConf"
           onChange={({ target }) => setPassConf(target.value)}
           autoComplete="new-password"
           className="p-4 mb-12 transition-all duration-200 ease-in bg-white border-b border-burgundy"

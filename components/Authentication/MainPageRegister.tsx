@@ -61,26 +61,29 @@ const MainPageRegister = () => {
         onSubmit={handleLogin}
         className="flex flex-col p-4 bg-white border-2 border-solid rounded-md minlg:w-3/12 md:w-8/12 sm:w-4/5 border-burgundy"
       >
-        <label htmlFor={email}>Email:</label>
+        <label htmlFor="email">Email:</label>
         <input
           type="text"
           value={email}
+          name="email"
           onChange={({ target }) => setEmail(target.value)}
           autoComplete="new-password"
           className="p-4 mb-12 transition-all duration-200 ease-in bg-white border-b border-burgundy"
         />
-        <label htmlFor={password}>Password:</label>
+        <label htmlFor="password">Password:</label>
         <input
           type="password"
           value={password}
+          name="password"
           onChange={({ target }) => setPassword(target.value)}
           autoComplete="new-password"
           className="p-4 mb-12 transition-all duration-200 ease-in bg-white border-b border-burgundy"
         />
-        <label htmlFor={passConf}>Password confirmation:</label>
+        <label htmlFor="passConf">Password confirmation:</label>
         <input
           type="password"
           value={passConf}
+          name="passConf"
           onChange={({ target }) => setPassConf(target.value)}
           autoComplete="new-password"
           className="p-4 mb-12 transition-all duration-200 ease-in bg-white border-b border-burgundy"

@@ -33,10 +33,11 @@ const ResetPassword = () => {
       </div>
 
       <form onSubmit={handlePasswordReset} className="flex flex-col w-2/5">
-        <label htmlFor={emailAddress}>Email</label>
+        <label htmlFor="emailAddress">Email</label>
         <input
           type="email"
           value={emailAddress}
+          name="emailAddress"
           onChange={({ target }) => setEmailAddress(target.value)}
           required
           className="p-4 mb-12 transition-all duration-200 ease-in bg-white border-b border-burgundy"
