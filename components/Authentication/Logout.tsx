@@ -1,17 +1,18 @@
-import { useState } from "react";
 import fire from "../../config/fire-config";
 import { useRouter } from "next/router";
+import { toast } from "react-toastify";
 
 const Logout = () => {
   const router = useRouter();
-  const [notification, setNotification] = useState("");
+
+  const notify = () => toast.error("Successfully logged out!");
 
   const handleLogout = () => {
     fire
       .auth()
       .signOut()
       .then(() => {
-        setNotification("You have successfully logged out");
+        notify();
         router.push("/");
       });
   };
