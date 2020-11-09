@@ -1,6 +1,7 @@
 import { useState, useEffect } from "react";
 import fire from "../../config/fire-config";
 import { useRouter } from "next/router";
+import { toast } from "react-toastify";
 
 interface Props {
   itemCategory?: string;
@@ -17,6 +18,9 @@ const EnterForm: React.FC<Props> = ({ loggedIn }) => {
   const [itemType, setItemType] = useState<string>();
 
   const [submit, setSubmit] = useState(false);
+
+  const notify = () =>
+    toast.success("Item successfully added to your inventory!");
 
   const user = fire.auth().currentUser;
 
@@ -45,16 +49,17 @@ const EnterForm: React.FC<Props> = ({ loggedIn }) => {
       type: itemType,
     });
 
+    notify();
     setItemCategory("");
     setItemAmount(1);
     setSubmit(true);
   };
 
-  useEffect(() => {
-    if (!loggedIn) {
-      router.push("/users/login");
-    }
-  }, []);
+  // useEffect(() => {
+  //   {
+  //     !loggedIn ? router.push("/users/login") : router.push("/enter");
+  //   }
+  // }, []);
 
   return (
     <section className="flex flex-col flex-1 pb-8 m-auto minmd:w-3/5">

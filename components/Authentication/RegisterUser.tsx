@@ -1,6 +1,7 @@
 import { useState } from "react";
 import fire from "../../config/fire-config";
 import { useRouter } from "next/router";
+import { toast } from "react-toastify";
 
 const RegisterUser = () => {
   const router = useRouter();
@@ -8,6 +9,8 @@ const RegisterUser = () => {
   const [password, setPassword] = useState("");
   const [passConf, setPassConf] = useState("");
   const [notification, setNotification] = useState("");
+
+  const notify = () => toast.success("Successfully logged in!");
 
   const handleLogin = (e) => {
     e.preventDefault();
@@ -40,6 +43,7 @@ const RegisterUser = () => {
         // console.log(err.code, err.message);
       });
 
+    notify();
     router.push("/");
   };
 

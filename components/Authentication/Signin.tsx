@@ -2,14 +2,16 @@ import { useState } from "react";
 import fire from "../../config/fire-config";
 import Link from "next/link";
 import { useRouter } from "next/router";
+import { toast } from "react-toastify";
 
 const Signin = () => {
   const router = useRouter();
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
-  const [notify, setNotification] = useState("");
+  const [notification, setNotification] = useState("");
   const [loggedIn, setLoggedIn] = useState(false);
 
+  const notify = () => toast.success("Successfully logged in!");
   const user = fire.auth().currentUser;
 
   const handleLogin = (e) => {
@@ -29,6 +31,7 @@ const Signin = () => {
     fire.auth().onAuthStateChanged((user) => {
       if (user) {
         setLoggedIn(true);
+        notify();
         user.getIdToken().then(function (token) {
           window.sessionStorage.getItem(token);
           if (token) {
@@ -67,7 +70,6 @@ const Signin = () => {
       <div className="flex flex-col flex-1 pb-20">
         <h2>Sign in to use your Inventory!</h2>
       </div>
-      {notify}
       <form
         onSubmit={handleLogin}
         className="flex flex-col minlg:w-2/5 md:w-4/5"

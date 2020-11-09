@@ -1,8 +1,11 @@
 import { useState, useEffect } from "react";
 import fire from "../../config/fire-config";
+import { toast } from "react-toastify";
 
 const ShoppingList = ({ loggedIn }) => {
   const [groceryList, setGroceryList] = useState([]);
+
+  const notify = () => toast.success("Successfully added 1!");
 
   const user = fire.auth().currentUser;
 
@@ -42,15 +45,16 @@ const ShoppingList = ({ loggedIn }) => {
             <div>
               <button
                 className="flex justify-between w-full"
-                onClick={(event) =>
+                onClick={(event) => {
                   fire
                     .firestore()
                     .collection(`${user.email}`)
                     .doc(item.item)
                     .update({
                       amount: parseInt(item.amount) + 1,
-                    })
-                }
+                    });
+                  notify();
+                }}
               >
                 <p>{item.item}</p>
                 <p className="px-2 text-xl font-bold transition-all duration-200 ease-in-out border-2 border-solid rounded-lg cursor-pointer text-blue hover:text-mauve border-blue">

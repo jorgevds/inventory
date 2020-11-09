@@ -1,9 +1,12 @@
 import { useState, useEffect } from "react";
 import Link from "next/link";
 import fire from "../../config/fire-config";
+import { toast } from "react-toastify";
 
 const Inventory = ({ loggedIn }) => {
   const [itemsList, setItemsList] = useState([]);
+
+  const notify = () => toast.success("Item successfully deleted");
 
   const user = fire.auth().currentUser;
 
@@ -44,13 +47,14 @@ const Inventory = ({ loggedIn }) => {
               <span className="minmd:px-4">{item.type}</span>
             </div>
             <button
-              onClick={(event) =>
+              onClick={(event) => {
                 fire
                   .firestore()
                   .collection(`${user.email}`)
                   .doc(item.id)
-                  .delete()
-              }
+                  .delete();
+                notify();
+              }}
               className="px-4 mx-8 ml-auto text-white transition-all duration-200 ease-in-out border-2 border-solid rounded-lg sm:px-2 hover:transition-all border-burgundy bg-mauve hover:bg-burgundy"
             >
               Delete
