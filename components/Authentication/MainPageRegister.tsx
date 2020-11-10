@@ -1,50 +1,49 @@
 import { useState } from "react";
 import fire from "../../config/fire-config";
-import { useRouter } from "next/router";
 import { toast } from "react-toastify";
 
 const MainPageRegister = () => {
-  const router = useRouter();
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [passConf, setPassConf] = useState("");
-  const [notification, setNotification] = useState("");
 
-  const notify = () => toast.success("Successfully logged in!");
+  const notifySuccess = () => toast.success("Successfully logged in!");
+  const notifyPasswordConfError = () =>
+    toast.error("Password and password confirmation does not match");
+  const notifyMissingPassword = () => toast.error("Please enter a password");
+  const notifyRegisterError = () =>
+    toast.warning("Unexpected error. Please try again.");
 
-  const handleLogin = (e) => {
+  const handleRegister = (e) => {
     e.preventDefault();
-    if (password !== passConf) {
-      setNotification("Password and password confirmation does not match");
-      setTimeout(() => {
-        setNotification("");
-      }, 2000);
+
+    if (!password) {
+      notifyMissingPassword();
+    } else if (password !== passConf) {
+      notifyPasswordConfError();
       setPassword("");
       setPassConf("");
-      return null;
+    } else {
+      fire
+        .auth()
+        .createUserWithEmailAndPassword(email, password)
+        .then(function (user) {
+          // get user data from the auth trigger
+          const userUid = user.user.uid; // The UID of the user.
+          const email = user.user.email; // The email of the user.
+
+          // set account doc
+          const account = {
+            email: email,
+            useruid: userUid,
+          };
+          fire.firestore().collection(`Users`).doc(email).set(account);
+          notifySuccess();
+        })
+        .catch((err) => {
+          notifyRegisterError();
+        });
     }
-
-    fire
-      .auth()
-      .createUserWithEmailAndPassword(email, password)
-      .then(function (user) {
-        // get user data from the auth trigger
-        const userUid = user.user.uid; // The UID of the user.
-        const email = user.user.email; // The email of the user.
-
-        // set account doc
-        const account = {
-          email: email,
-          useruid: userUid,
-        };
-        fire.firestore().collection(`Users`).doc(email).set(account);
-      })
-      .catch((err) => {
-        // console.log(err.code, err.message);
-      });
-
-    notify();
-    router.push("/");
   };
 
   return (
@@ -60,9 +59,8 @@ const MainPageRegister = () => {
         </h4>
       </article>
 
-      {notification}
       <form
-        onSubmit={handleLogin}
+        onSubmit={handleRegister}
         className="flex flex-col p-4 bg-white border-2 border-solid rounded-md minlg:w-3/12 md:w-8/12 sm:w-4/5 border-burgundy"
       >
         <label htmlFor="email">Email:</label>

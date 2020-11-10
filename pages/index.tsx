@@ -8,7 +8,6 @@ import { useState } from "react";
 export default function Home() {
   const [loggedIn, setLoggedIn] = useState(false);
 
-  const user = fire.auth().currentUser;
   fire.auth().onAuthStateChanged((user) => {
     if (user) {
       user.getIdToken().then(function (token) {
@@ -24,14 +23,14 @@ export default function Home() {
 
   return (
     <Layout title={": home"}>
-      <div className="flex flex-col flex-1 min-h-screen">
-        {loggedIn ? (
-          <CupboardAndCart loggedIn={loggedIn} />
-        ) : (
+      {loggedIn ? (
+        <CupboardAndCart loggedIn={loggedIn} />
+      ) : (
+        <>
           <MainPageRegister />
-        )}
-        <Landing />
-      </div>
+          <Landing />
+        </>
+      )}
     </Layout>
   );
 }

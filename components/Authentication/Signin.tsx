@@ -8,11 +8,15 @@ const Signin = () => {
   const router = useRouter();
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
-  const [notification, setNotification] = useState("");
-  const [loggedIn, setLoggedIn] = useState(false);
 
-  const notify = () => toast.success("Successfully logged in!");
-  const user = fire.auth().currentUser;
+  const notifySuccess = () => toast.success("Successfully logged in!");
+  const notifyError = () => toast.error("Failed to log in!");
+  const notifyLoginDetails = () =>
+    toast.warning("Are you sure your information is right?");
+  const notifySessionFailure = () =>
+    toast.warning(
+      "Failed to log session. Next page visit may require you to login again."
+    );
 
   const handleLogin = (e) => {
     e.preventDefault();
@@ -20,22 +24,21 @@ const Signin = () => {
     fire
       .auth()
       .signInWithEmailAndPassword(username, password)
-      .catch((err) => {
-        // console.log(err.code, err.message);
-        setNotification(err.message);
+      .catch(() => {
+        setPassword("");
+        notifyError();
         setTimeout(() => {
-          setNotification("");
-        }, 2000);
+          notifyLoginDetails();
+        }, 1000);
       });
 
     fire.auth().onAuthStateChanged((user) => {
       if (user) {
-        setLoggedIn(true);
-        notify();
+        notifySuccess();
         user.getIdToken().then(function (token) {
           window.sessionStorage.getItem(token);
           if (token) {
-            fetch("http://localhost:3000/users/login", {
+            fetch(window.location.href, {
               method: "POST",
               headers: {
                 "Content-Type": "application/json",
@@ -44,25 +47,21 @@ const Signin = () => {
             });
           }
         });
-      } else {
-        setLoggedIn(false);
+
+        fire
+          .auth()
+          .setPersistence(fire.auth.Auth.Persistence.SESSION)
+          .then(function () {
+            return fire.auth().signInWithEmailAndPassword(username, password);
+          })
+          .catch(() => {
+            {
+              !user && notifySessionFailure();
+            }
+          });
+        router.push("/");
       }
     });
-
-    fire
-      .auth()
-      .setPersistence(fire.auth.Auth.Persistence.SESSION)
-      .then(function () {
-        return fire.auth().signInWithEmailAndPassword(username, password);
-      })
-      .catch(function (error) {
-        var errorCode = error.code;
-        var errorMessage = error.message;
-      });
-
-    setUsername("");
-    setPassword("");
-    router.push("/");
   };
 
   return (

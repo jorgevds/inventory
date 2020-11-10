@@ -2,7 +2,11 @@ const Hero = () => {
   return (
     <section className="flex justify-between min-h-screen sm:flex-col bg-blackMuted align-center">
       <article className="flex flex-col self-center w-5/12 minlg:ml-12 minmd:ml-6 sm:w-5/6">
-        <img src="inventory.png" className="w-full h-auto" />
+        <img
+          src="inventory.png"
+          className="w-full h-auto"
+          alt="Inventory app, an image of the inventory screen on the homepage"
+        />
       </article>
       <article className="flex flex-col self-center m-auto">
         <h2 className="py-8 text-3xl md:text-center">

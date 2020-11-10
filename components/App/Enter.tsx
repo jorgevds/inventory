@@ -19,7 +19,7 @@ const EnterForm: React.FC<Props> = ({ loggedIn }) => {
 
   const [submit, setSubmit] = useState(false);
 
-  const notify = () =>
+  const notifySuccess = () =>
     toast.success("Item successfully added to your inventory!");
 
   const user = fire.auth().currentUser;
@@ -41,15 +41,14 @@ const EnterForm: React.FC<Props> = ({ loggedIn }) => {
 
   const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
-    // collections only take documents: every user would need their own collection which stores all items,
-    // which then creates a doc for each since a doc can only contain 1mb max
+
     fire.firestore().collection(`${user.email}`).doc(itemCategory).set({
       item: itemCategory,
       amount: itemAmount,
       type: itemType,
     });
 
-    notify();
+    notifySuccess();
     setItemCategory("");
     setItemAmount(1);
     setSubmit(true);

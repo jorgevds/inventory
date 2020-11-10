@@ -5,7 +5,7 @@ import { toast } from "react-toastify";
 const ShoppingList = ({ loggedIn }) => {
   const [groceryList, setGroceryList] = useState([]);
 
-  const notify = () => toast.success("Successfully added 1!");
+  const notifySuccess = () => toast.success("Successfully added 1!");
 
   const user = fire.auth().currentUser;
 
@@ -53,7 +53,7 @@ const ShoppingList = ({ loggedIn }) => {
                     .update({
                       amount: parseInt(item.amount) + 1,
                     });
-                  notify();
+                  notifySuccess();
                 }}
               >
                 <p>{item.item}</p>

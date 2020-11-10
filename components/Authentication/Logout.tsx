@@ -13,7 +13,9 @@ const Logout = () => {
       .signOut()
       .then(() => {
         notify();
-        router.push("/");
+        {
+          router.pathname != "/" && router.push("/");
+        }
       });
   };
 

@@ -1,12 +1,18 @@
 import fire from "../../config/fire-config";
 import { useState } from "react";
 import { useRouter } from "next/router";
+import { toast } from "react-toastify";
 
 const ResetPassword = () => {
   const router = useRouter();
   const [emailAddress, setEmailAddress] = useState<string>("");
 
-  const user = fire.auth().currentUser;
+  const notifySuccess = () =>
+    toast.success(
+      "Email sent! Please check your inbox for a password reset email"
+    );
+  const notifyError = () =>
+    toast.warning("Unexpected error. Please try again.");
 
   const handlePasswordReset = (e) => {
     e.preventDefault();
@@ -16,10 +22,11 @@ const ResetPassword = () => {
       .sendPasswordResetEmail(emailAddress)
       .then(function () {
         // Email sent.
+        notifySuccess();
         router.push("/");
       })
-      .catch(function (error) {
-        // An error happened.
+      .catch((e) => {
+        notifyError();
       });
   };
 

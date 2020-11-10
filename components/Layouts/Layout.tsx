@@ -2,7 +2,7 @@ import Head from "next/head";
 import Header from "../Navigation/Header";
 import Footer from "../Navigation/Footer";
 import fire from "../../config/fire-config";
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 
 const Layout = ({ children, title = "" }) => {
   const [loggedIn, setLoggedIn] = useState<boolean>(false);
@@ -14,7 +14,7 @@ const Layout = ({ children, title = "" }) => {
         window.sessionStorage.getItem(token);
         if (token) {
           setLoggedIn(true);
-          fetch("http://localhost:3000/users/login", {
+          fetch(window.location.href, {
             method: "POST",
             headers: {
               "Content-Type": "application/json",
@@ -64,12 +64,15 @@ const Layout = ({ children, title = "" }) => {
         <meta name="theme-color" content="#ffffff" />
         <link rel="manifest" href="%PUBLIC_URL%/manifest.json" />
 
-        <meta name="description" content="description for your website" />
+        <meta
+          name="description"
+          content="The grocery list app of the 21st century! Fully automated grocery lists in a simple way!"
+        />
         <meta property="og:title" content="Inventory" />
         <meta property="og:site_name" content="Grocery lists made easy!" />
         <meta
           property="og:description"
-          content="description for your website for FB and twitter"
+          content="The grocery list app of the 21st century! Fully automated grocery lists in a simple way!"
         />
         <meta property="og:type" content="website" />
         <meta
@@ -78,12 +81,12 @@ const Layout = ({ children, title = "" }) => {
         />
         <meta
           property="og:url"
-          content="FB and twitterURL to the hosted web page"
+          content="https://inventory.jorgevds.vercel.app/"
         />
-        <meta name="twitter:card" content="summary_large_image" />
+        <meta name="twitter:card" content="Inventory" />
         <meta
           name="twitter:image:alt"
-          content="twitter img alt of the thumbnail photo"
+          content="Inventory: your gateway to clean, easy grocery shopping!"
         />
       </Head>
       <Header loggedIn={loggedIn} />
