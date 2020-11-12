@@ -3,7 +3,7 @@ const Hero = () => {
     <section className="flex justify-between min-h-screen sm:flex-col bg-blackMuted align-center">
       <article className="flex flex-col self-center w-5/12 minlg:ml-12 minmd:ml-6 sm:w-5/6">
         <img
-          src="inventory.png"
+          src="img/inventory.png"
           className="w-full h-auto"
           alt="Inventory app, an image of the inventory screen on the homepage"
         />
