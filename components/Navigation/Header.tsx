@@ -6,7 +6,7 @@ const Header = ({ loggedIn }) => {
   const router = useRouter();
 
   return (
-    <header className="sticky top-0 bg-white opacity-75">
+    <header className="sticky top-0 z-10 bg-white opacity-75 ">
       <nav className="flex m-auto minmd:w-3/5">
         <ul className="flex py-6">
           <li className="minmd:px-4 sm:px-2">
