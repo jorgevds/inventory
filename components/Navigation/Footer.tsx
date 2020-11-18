@@ -32,12 +32,12 @@ const Footer = () => {
         <ul className="flex flex-col px-6 sm:px-8">
           <li className="py-4">
             <Link href="/users/register">
-              <a>register</a>
+              <a>Register</a>
             </Link>
           </li>
           <li className="py-4">
             <Link href="/users/login">
-              <a>login</a>
+              <a>Login</a>
             </Link>
           </li>
         </ul>
