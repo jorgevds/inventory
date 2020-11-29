@@ -8,7 +8,7 @@ module.exports = {
     extend: {},
     fontFamily: {
       title: ["Sansita Swashed", "cursive"],
-      body: ["Open sans", "sans-serif"],
+      body: ["sans-serif"],
     },
     colors: {
       black: "#000",

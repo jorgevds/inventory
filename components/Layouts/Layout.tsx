@@ -34,7 +34,7 @@ const Layout = ({ children, title = "" }) => {
         <title>{fullTitle + title}</title>
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
         <link
-          href="https://fonts.googleapis.com/css2?family=Open+Sans&family=Sansita+Swashed:wght@300&display=swap&text=invetory"
+          href="https://fonts.googleapis.com/css2?family=Sansita+Swashed:wght@100&display=swap&text=invetory"
           rel="stylesheet"
         />
         <link
