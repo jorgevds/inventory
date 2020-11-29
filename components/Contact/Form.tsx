@@ -1,5 +1,8 @@
 import React from "react";
-import { useState } from "react";
+import { useState, useRef } from "react";
+import fire from "../../config/fire-config";
+import { toast } from "react-toastify";
+import ReCAPTCHA from "react-google-recaptcha";
 
 interface Props {
   firstName: string;
@@ -17,10 +20,60 @@ const Form: React.FC<Props> = () => {
   const [message, setMessage] = useState<string>("");
   const [title, setTitle] = useState<string>("");
 
+  const reRef = useRef<ReCAPTCHA>();
   const [submit, setSubmit] = useState(false);
-  const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
+
+  const notifyFormSuccess = () => toast.success("Message submitted!");
+  const notifyFormError = () =>
+    toast.warning("Something went wrong. Please try again!");
+  const notifyCaptchaError = () =>
+    toast.error("Failed to verify Captcha. Please try again!");
+
+  const handleSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
-    setSubmit(true);
+
+    const token = await reRef.current.executeAsync();
+    reRef.current.reset();
+
+    const response = await fetch("/api/auth", {
+      method: "POST",
+      headers: {
+        Accept: "application/json",
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({
+        token,
+      }),
+    });
+    const data = await response.json();
+
+    if (data.response == "success") {
+      fire
+        .firestore()
+        .collection("contact-form")
+        .doc(email + " " + window.Date())
+        .set({
+          title: title,
+          firstName: firstName,
+          lastName: lastName,
+          email: email,
+          message: message,
+        })
+        .catch((err) => {
+          notifyFormError();
+          console.log(err);
+        });
+
+      notifyFormSuccess();
+      setTitle("");
+      setFirstName("");
+      setLastName("");
+      setEmail("");
+      setMessage("");
+      setSubmit(true);
+    } else {
+      notifyCaptchaError();
+    }
   };
 
   return (
@@ -29,6 +82,11 @@ const Form: React.FC<Props> = () => {
         onSubmit={handleSubmit}
         className="flex flex-col justify-between flex-1 p-8 pt-12 m-auto border-solid sm:border-t-4 sm:border-b-4 minmd:rounded-lg minmd:border-4 minlg:w-3/5 md:w-4/5 sm:w-screen border-blue"
       >
+        <ReCAPTCHA
+          sitekey={process.env.NEXT_PUBLIC_RECAPTCHA_SITE_KEY}
+          size="invisible"
+          ref={reRef}
+        />
         <label htmlFor="title" className="flex justify-between my-4">
           Title
         </label>
@@ -110,10 +168,13 @@ const Form: React.FC<Props> = () => {
         </button>
       </form>
       {submit ? (
-        <h3>
-          Bedankt voor uw bericht! Wij gaan aan het werk en geven u zo snel
-          mogelijk een antwoord.
-        </h3>
+        <section className="flex flex-1 pb-8 m-auto mt-12 text-center minmd:w-3/5 md:w-full">
+          <h3 className="text-xl">
+            Thank you for your <span className="text-blue">message!</span> Once
+            we receive it, we will get to work and respond as quickly as
+            possible!
+          </h3>
+        </section>
       ) : null}
     </section>
   );
