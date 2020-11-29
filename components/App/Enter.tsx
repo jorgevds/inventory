@@ -21,7 +21,8 @@ const EnterForm: React.FC<Props> = ({ loggedIn }) => {
 
   const notifySuccess = () =>
     toast.success("Item successfully added to your inventory!");
-
+  const notifySubmitError = () =>
+    toast.warning("Something went wrong. Please try again!");
   const user = fire.auth().currentUser;
 
   const itemTypeList = [
@@ -42,11 +43,18 @@ const EnterForm: React.FC<Props> = ({ loggedIn }) => {
   const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
 
-    fire.firestore().collection(`${user.email}`).doc(itemCategory).set({
-      item: itemCategory,
-      amount: itemAmount,
-      type: itemType,
-    });
+    fire
+      .firestore()
+      .collection(`${user.email}`)
+      .doc(itemCategory)
+      .set({
+        item: itemCategory,
+        amount: itemAmount,
+        type: itemType,
+      })
+      .catch((err) => {
+        notifySubmitError();
+      });
 
     notifySuccess();
     setItemCategory("");

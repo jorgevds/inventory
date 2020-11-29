@@ -12,7 +12,7 @@ const MainPageRegister = () => {
     toast.error("Password and password confirmation does not match");
   const notifyMissingPassword = () => toast.error("Please enter a password");
   const notifyRegisterError = () =>
-    toast.warning("Unexpected error. Please try again.");
+    toast.warning("Something went wrong. Please try again!");
 
   const handleRegister = (e) => {
     e.preventDefault();
@@ -79,8 +79,12 @@ const MainPageRegister = () => {
           name="password"
           onChange={({ target }) => setPassword(target.value)}
           autoComplete="new-password"
-          className="p-4 mb-12 transition-all duration-200 ease-in bg-white border-b border-burgundy"
+          className="p-4 mb-2 transition-all duration-200 ease-in bg-white border-b border-burgundy"
         />
+        <small className="mb-8">
+          Your password must be at least 6 characters in length. We recommend at
+          least 1 capital letter and 1 number.
+        </small>
         <label htmlFor="passConf">Password confirmation:</label>
         <input
           type="password"

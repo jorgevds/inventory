@@ -98,7 +98,7 @@ const Signin = () => {
       </form>
       <div>
         <Link href="/passwordReset">
-          <a>
+          <a className="transition-all duration-200 ease-in-out hover:text-blue">
             <h3>Forgot your password?</h3>
           </a>
         </Link>

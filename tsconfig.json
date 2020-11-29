@@ -21,7 +21,13 @@
     "pages/index.tsx",
     "pages/_app.tsx",
     "pages/_document.tsx",
-    "pages/users/register.tsx"
+    "pages/about.tsx",
+    "pages/enter.tsx",
+    "pages/contact.tsx",
+    "pages/users/passwordReset.tsx",
+    "pages/users/signin.tsx",
+    "pages/users/register.tsx",
+    "pages/api/auth.ts",
   ],
   "exclude": ["node_modules"]
 }
