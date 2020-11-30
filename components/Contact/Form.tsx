@@ -5,20 +5,20 @@ import { toast } from "react-toastify";
 import ReCAPTCHA from "react-google-recaptcha";
 
 interface Props {
+  title: string;
   firstName: string;
   lastName: string;
   email: string;
   message: string;
-  title: string;
   submit?: boolean;
 }
 
 const Form: React.FC<Props> = () => {
+  const [title, setTitle] = useState<string>("");
   const [firstName, setFirstName] = useState<string>("");
   const [lastName, setLastName] = useState<string>("");
   const [email, setEmail] = useState<string>("");
   const [message, setMessage] = useState<string>("");
-  const [title, setTitle] = useState<string>("");
 
   const reRef = useRef<ReCAPTCHA>();
   const [submit, setSubmit] = useState(false);

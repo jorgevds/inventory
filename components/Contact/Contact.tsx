@@ -14,11 +14,11 @@ const Contact = ({ firstName, lastName, email, message, title }) => {
       </article>
 
       <Form
+        title={title}
         firstName={firstName}
         lastName={lastName}
         email={email}
         message={message}
-        title={title}
       />
     </section>
   );

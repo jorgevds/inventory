@@ -6,8 +6,8 @@ interface FormData {
 
 export default async (req: NextApiRequest, res: NextApiResponse) => {
     const formData: FormData = req.body;
-    const human = await validateHuman(formData.token);
-  if (!human) {
+    const validated = await performCaptchaCheck(formData.token);
+  if (!validated) {
     res.status(400);
     res.json({response: "failure"})
     return;
@@ -18,7 +18,7 @@ export default async (req: NextApiRequest, res: NextApiResponse) => {
     }
 };
 
-async function validateHuman(token: string): Promise<boolean> {
+async function performCaptchaCheck(token: string): Promise<boolean> {
   const secret = process.env.RECAPTCHA_SECRET_KEY;
   const response = await fetch(
     `https://www.google.com/recaptcha/api/siteverify?secret=${secret}&response=${token}`,

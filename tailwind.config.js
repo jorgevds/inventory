@@ -52,7 +52,7 @@ module.exports = {
       // => @media (max-width: 1023px) { ... }
 
       minmd: { min: "640px" },
-      // => @media (min-width: 689px) { ... }
+      // => @media (min-width: 640px) { ... }
 
       md: { max: "768px" },
       // => @media (max-width: 768px) { ... }
