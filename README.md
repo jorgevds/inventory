@@ -43,7 +43,7 @@ Sometimes Inventory goofs, or gaffs, or make a mistake, and it errors out. But n
 
 Because the database is Firebase, the app is totally secure. Others can't access any of your information by accessing the app. The only people authorised to change your Inventory items, are the registered users that are the respective owners of their accounts. There's also no risk of anyone hacking into the database because of the proper use of environment variables in the code.
 
-![Can't open the doors without all the keys](https://user-images.githubusercontent.com/54646908/100669525-d09f2d80-335d-11eb-954d-bc7d5803d4e7.png)
+![Can't open the doors without all the keys](https://user-images.githubusercontent.com/54646908/100737006-e3ece000-33d3-11eb-8149-9f6f8a2bd71b.png)
 ###### Can't open the doors without all the keys :fire:
 
 
@@ -51,7 +51,7 @@ Because the database is Firebase, the app is totally secure. Others can't access
 
 Besides the fact that the API keys are **not** exposed... well... anywhere, the website itself also has security measures in place to protect against malicious attacks. The Firebase rules are set up to where unauthorised users can't access any of the data on the database. And the only possible leak where unauthorised users can interact with the app, is protected with Google's Recaptcha service.
 
-![So small it's almost invisible](https://user-images.githubusercontent.com/54646908/100668782-c3357380-335c-11eb-8140-e35cc65d2233.png)
+![So small it's almost invisible](https://user-images.githubusercontent.com/54646908/100737012-e6e7d080-33d3-11eb-948f-1047cd07ccb6.png)
 ###### So small it's almost invisible :mouse:
 
 And yes, these API keys are also protected via environment variables.
