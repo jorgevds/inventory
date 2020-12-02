@@ -31,7 +31,7 @@ const ShoppingList = ({ loggedIn }) => {
   }
 
   return (
-    <ul className="flex flex-col">
+    <ul className="flex flex-col sm:mt-4">
       {!groceryList.length ? (
         <div className="m-auto mt-16 text-xl sm:text-center">
           You are all stocked up on groceries!
@@ -40,12 +40,12 @@ const ShoppingList = ({ loggedIn }) => {
         groceryList.map((item) => (
           <li
             key={item.item}
-            className="flex flex-col my-8 text-lg sm:mx-8 minmd:mx-16"
+            className="flex flex-col my-8 text-lg sm:my-6 sm:mx-8 minmd:mx-16"
           >
             <div>
               <button
                 className="flex justify-between w-full"
-                onClick={(event) => {
+                onClick={() => {
                   fire
                     .firestore()
                     .collection(`${user.email}`)

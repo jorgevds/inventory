@@ -2,7 +2,7 @@ import Link from "next/link";
 
 const Footer = () => {
   return (
-    <footer>
+    <footer className="z-10">
       <nav className="pt-8 pb-12 mt-16 text-white minmd:flex minlg:px-20 minmd:px-10 minmd:justify-evenly bg-blue">
         <ul className="text-2xl font-title sm:text-center">
           <li>Inventory</li>
@@ -43,6 +43,11 @@ const Footer = () => {
         </ul>
         <ul className="flex flex-col justify-center text-sm sm:pl-8">
           <li>Copyright © 2020. All rights reserved.</li>
+          <li>
+            <Link href="/privacy">
+              <a>Privacy notice</a>
+            </Link>
+          </li>
         </ul>
       </nav>
     </footer>

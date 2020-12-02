@@ -1,10 +1,12 @@
 import Head from "next/head";
 import Header from "../Navigation/Header";
 import Footer from "../Navigation/Footer";
+import Snackbar from "../Authentication/Snackbar";
 import fire from "../../config/fire-config";
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
 
 const Layout = ({ children, title = "" }) => {
+  const [token, setToken] = useState<boolean>(false);
   const [loggedIn, setLoggedIn] = useState<boolean>(false);
   const fullTitle = "Inventory";
 
@@ -13,6 +15,7 @@ const Layout = ({ children, title = "" }) => {
       user.getIdToken().then(function (token) {
         window.sessionStorage.getItem(token);
         if (token) {
+          setToken(true);
           setLoggedIn(true);
           fetch(window.location.href, {
             method: "POST",
@@ -34,7 +37,7 @@ const Layout = ({ children, title = "" }) => {
         <title>{fullTitle + title}</title>
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
         <link
-          href="https://fonts.googleapis.com/css2?family=Sansita+Swashed:wght@100&display=swap&text=invetory"
+          href="https://fonts.googleapis.com/css2?family=Sansita+Swashed:wght@300&display=swap&text=Invetory"
           rel="stylesheet"
         />
         <link
@@ -90,6 +93,7 @@ const Layout = ({ children, title = "" }) => {
       </Head>
       <Header loggedIn={loggedIn} />
       {children}
+      {!token && <Snackbar />}
       <Footer />
     </>
   );

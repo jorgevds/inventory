@@ -35,7 +35,7 @@ const Inventory = ({ loggedIn }) => {
     <ul className="flex flex-col">
       {!itemsList.length ? (
         <div className="m-auto mt-16 text-xl lg:text-center">
-          Click <span className="text-blue">enter</span> or the{" "}
+          Click <span className="text-blue">Enter</span> above or the{" "}
           <span className="text-blue">plus symbol</span> below to get started!
         </div>
       ) : (
