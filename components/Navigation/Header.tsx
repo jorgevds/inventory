@@ -6,10 +6,10 @@ const Header = ({ loggedIn }) => {
   const router = useRouter();
 
   return (
-    <header className="sticky top-0 z-10 bg-white opacity-75 ">
+    <header className="sticky top-0 z-10 bg-white">
       <nav className="flex m-auto minmd:w-3/5">
-        <ul className="flex py-6">
-          <li className="minmd:px-4 sm:px-2">
+        <ul className="flex py-4">
+          <li>
             {loggedIn ? (
               <Link href="/enter">
                 <a className={router.pathname == "/enter" ? "active" : null}>
@@ -29,7 +29,7 @@ const Header = ({ loggedIn }) => {
               </a>
             </Link>
           </li>
-          <li className="minmd:px-4 sm:px-2">
+          <li className="px-2">
             <Link href="/contact">
               <a className={router.pathname == "/contact" ? "active" : null}>
                 Contact
@@ -38,8 +38,8 @@ const Header = ({ loggedIn }) => {
           </li>
         </ul>
         {!loggedIn ? (
-          <ul className="flex justify-end flex-auto py-6 sm:justify-evenly">
-            <li className="minmd:px-4">
+          <ul className="flex justify-end flex-auto py-4">
+            <li className="px-2">
               <Link href="/users/register">
                 <a
                   className={
@@ -50,7 +50,7 @@ const Header = ({ loggedIn }) => {
                 </a>
               </Link>
             </li>
-            <li className="minmd:px-4">
+            <li className="px-2">
               <Link href="/users/login">
                 <a
                   className={
@@ -67,8 +67,11 @@ const Header = ({ loggedIn }) => {
         )}
       </nav>
       <Link href="/">
-        <a className="pb-4 m-auto top-1/2" title="Homepage">
-          <h1 className="pb-8 text-4xl font-hairline text-center font-title">
+        <a
+          className="m-auto minlg:absolute minlg:left-auto minlg:top-0 minlg:w-full top-1/2"
+          title="Homepage"
+        >
+          <h1 className="pb-2 text-3xl text-center minlg:text-4xl font-title">
             Inventory
           </h1>
         </a>
