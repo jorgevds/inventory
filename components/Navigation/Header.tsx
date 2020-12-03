@@ -22,14 +22,14 @@ const Header = ({ loggedIn }) => {
               </Link>
             )}
           </li>
-          <li className="minmd:px-4 sm:px-2">
+          <li className="px-2">
             <Link href="/about">
               <a className={router.pathname == "/about" ? "active" : null}>
                 About
               </a>
             </Link>
           </li>
-          <li className="px-2">
+          <li>
             <Link href="/contact">
               <a className={router.pathname == "/contact" ? "active" : null}>
                 Contact
@@ -37,9 +37,18 @@ const Header = ({ loggedIn }) => {
             </Link>
           </li>
         </ul>
+        <ul className="flex flex-auto w-full md:hidden ">
+          <li className="m-auto ">
+            <Link href="/">
+              <a title="Homepage">
+                <h1 className="pb-2 text-4xl font-title">Inventory</h1>
+              </a>
+            </Link>
+          </li>
+        </ul>
         {!loggedIn ? (
-          <ul className="flex justify-end flex-auto py-4">
-            <li className="px-2">
+          <ul className="flex justify-end py-4 md:flex-auto ">
+            <li className="pr-2 minlg:ml-auto">
               <Link href="/users/register">
                 <a
                   className={
@@ -66,16 +75,17 @@ const Header = ({ loggedIn }) => {
           <Logout />
         )}
       </nav>
-      <Link href="/">
-        <a
-          className="m-auto minlg:absolute minlg:left-auto minlg:top-0 minlg:w-full top-1/2"
-          title="Homepage"
-        >
-          <h1 className="pb-2 text-3xl text-center minlg:text-4xl font-title">
-            Inventory
-          </h1>
-        </a>
-      </Link>
+      <ul>
+        <li className="m-auto minlg:hidden ">
+          <Link href="/">
+            <a title="Homepage">
+              <h1 className="pb-2 text-3xl text-center font-title">
+                Inventory
+              </h1>
+            </a>
+          </Link>
+        </li>
+      </ul>
     </header>
   );
 };
