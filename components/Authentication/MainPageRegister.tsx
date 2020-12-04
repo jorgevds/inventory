@@ -54,8 +54,7 @@ const MainPageRegister = () => {
         </h2>
         <h3 className="py-6 text-xl">Join thousands of others who are too!</h3>
         <h4 className="py-4 text-lg minlg:w-4/5">
-          Register your account with us now to get started on your grocery
-          journey!
+          Register now to get started on your journey to golden grocery lists!
         </h4>
       </article>
 
