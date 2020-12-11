@@ -77,15 +77,12 @@ const Layout = ({ children, title = "" }) => {
           content="The grocery list app of the 21st century! Fully automated grocery lists in a simple way!"
         />
         <meta property="og:type" content="website" />
-        <meta
-          property="og:image"
-          content="FB and twitter thumbnail photo (must be URL)"
-        />
+        <meta property="og:image" content="https://bit.ly/37a0flU" />
         <meta
           property="og:url"
           content="https://inventory.jorgevds.vercel.app/"
         />
-        <meta name="twitter:card" content="Inventory" />
+        <meta name="twitter:card" content="summary_large_image" />
         <meta
           name="twitter:image:alt"
           content="Inventory: your gateway to clean, easy grocery shopping!"
