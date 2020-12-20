@@ -6,8 +6,8 @@ import { toast } from "react-toastify";
 
 const Signin = () => {
   const router = useRouter();
-  const [username, setUsername] = useState("");
-  const [password, setPassword] = useState("");
+  const [username, setUsername] = useState<string>("");
+  const [password, setPassword] = useState<string>("");
 
   const notifySuccess = () => toast.success("Successfully logged in!");
   const notifyError = () => toast.error("Failed to log in!");
@@ -48,17 +48,6 @@ const Signin = () => {
           }
         });
 
-        fire
-          .auth()
-          .setPersistence(fire.auth.Auth.Persistence.SESSION)
-          .then(function () {
-            return fire.auth().signInWithEmailAndPassword(username, password);
-          })
-          .catch(() => {
-            {
-              !user && notifySessionFailure();
-            }
-          });
         router.push("/");
       }
     });

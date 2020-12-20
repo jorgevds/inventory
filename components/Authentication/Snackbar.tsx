@@ -2,7 +2,7 @@ import Link from "next/link";
 import { useState } from "react";
 
 const Snackbar = () => {
-  const [agree, setAgree] = useState<Boolean>(false);
+  const [agree, setAgree] = useState<boolean>(false);
   return (
     <>
       {!agree && (

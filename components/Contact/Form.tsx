@@ -21,7 +21,7 @@ const Form: React.FC<Props> = () => {
   const [message, setMessage] = useState<string>("");
 
   const reRef = useRef<ReCAPTCHA>();
-  const [submit, setSubmit] = useState(false);
+  const [submit, setSubmit] = useState<boolean>(false);
 
   const notifyFormSuccess = () => toast.success("Message submitted!");
   const notifyFormError = () =>

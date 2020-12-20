@@ -5,9 +5,10 @@ import { toast } from "react-toastify";
 
 const RegisterUser = () => {
   const router = useRouter();
-  const [email, setEmail] = useState("");
-  const [password, setPassword] = useState("");
-  const [passConf, setPassConf] = useState("");
+
+  const [email, setEmail] = useState<string>("");
+  const [password, setPassword] = useState<string>("");
+  const [passConf, setPassConf] = useState<string>("");
 
   const notifySuccess = () => toast.success("Successfully logged in!");
   const notifyPasswordConfError = () =>
