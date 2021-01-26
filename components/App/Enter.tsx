@@ -80,7 +80,7 @@ const EnterForm: React.FC<Props> = ({ loggedIn }) => {
 
       <form
         onSubmit={handleSubmit}
-        className="flex flex-col flex-1 pt-12 m-auto border-solid lg:p-4 md:p-8 minmd:rounded-lg minmd:border-4 minmd:justify-between minlg:w-3/5 border-blue sm:w-screen sm:border-t-4 sm:border-b-4"
+        className="flex flex-col flex-1 pt-12 m-auto border-solid minmd:shadow-xl lg:p-4 md:p-8 minmd:rounded-lg minmd:border-4 minmd:justify-between minlg:w-3/5 border-blue sm:w-screen sm:border-t-4 sm:border-b-4"
       >
         <label className="flex justify-between mx-4 my-8 minlg:mx-6 minlg:my-8 sm:flex-col">
           Enter your item

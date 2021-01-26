@@ -31,7 +31,7 @@ const About = () => {
         <article className="flex flex-col self-center w-3/12 sm:w-3/6 sm:py-8">
           <img
             src="img/profile.jpg"
-            className="w-full h-auto border-2 border-solid rounded-full border-blue"
+            className="w-full h-auto border-2 border-solid rounded-full shadow-md border-blue"
             alt="Profile picture of the creator, Jorge"
           />
         </article>
@@ -44,7 +44,7 @@ const About = () => {
 
         <Link href="/order">
           <a>
-            <button className="w-full py-4 m-auto my-8 text-xl text-white transition-all duration-300 ease-in-out transform border-2 border-solid rounded-lg bg-blue focus:outline-none focus:shadow-outline hover:transition-all hover:scale-105 border-burgundy">
+            <button className="w-full py-4 m-auto my-8 text-xl text-white transition-all duration-300 ease-in-out transform border-2 border-solid rounded-lg shadow-lg bg-blue focus:outline-none focus:shadow-outline hover:transition-all hover:scale-105 border-burgundy">
               Register now
             </button>
           </a>

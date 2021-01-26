@@ -2,7 +2,7 @@ import Form from "./Form";
 
 const Contact = ({ firstName, lastName, email, message, title }) => {
   return (
-    <section className="flex flex-col flex-1 pb-8 m-auto minmd:w-3/5 md:w-full">
+    <section className="flex flex-col flex-1 py-4 m-auto minlg:py-12 minmd:w-3/5 md:w-full">
       <article className="m-auto mb-8">
         <h2 className="my-4">Got questions?</h2>
         <h2 className="my-4">We might have answers!</h2>

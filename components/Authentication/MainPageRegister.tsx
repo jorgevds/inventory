@@ -47,7 +47,7 @@ const MainPageRegister = () => {
   };
 
   return (
-    <section className="flex items-center flex-1 py-12 md:p-8 sm:flex-col md:pb-12 bg-blueDark justify-evenly">
+    <section className="flex items-center flex-1 py-12 md:p-8 sm:flex-col md:pb-12 bg-blue justify-evenly">
       <article className="flex flex-col self-start text-white sm:text-center">
         <h2 className="py-2 text-3xl minmd:mt-8">
           Sick of paper grocery lists?
@@ -60,7 +60,7 @@ const MainPageRegister = () => {
 
       <form
         onSubmit={handleRegister}
-        className="flex flex-col p-4 bg-white border-2 border-solid rounded-md minlg:w-3/12 md:w-8/12 sm:w-4/5 border-burgundy"
+        className="flex flex-col p-4 bg-white border-2 border-solid rounded-md shadow-2xl minlg:w-3/12 md:w-8/12 sm:w-4/5"
       >
         <label htmlFor="email">Email:</label>
         <input

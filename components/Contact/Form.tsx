@@ -80,14 +80,14 @@ const Form: React.FC<Props> = () => {
     <section>
       <form
         onSubmit={handleSubmit}
-        className="flex flex-col justify-between flex-1 p-8 pt-12 m-auto border-solid sm:border-t-4 sm:border-b-4 minmd:rounded-lg minmd:border-4 minlg:w-3/5 md:w-4/5 sm:w-screen border-blue"
+        className="flex flex-col justify-between flex-1 p-8 pt-12 m-auto border-solid shadow-lg sm:border-t-4 sm:border-b-4 minmd:rounded-lg minmd:border-4 minlg:w-3/5 md:w-4/5 sm:w-screen border-blue"
       >
         <ReCAPTCHA
           sitekey={process.env.NEXT_PUBLIC_RECAPTCHA_SITE_KEY}
           size="invisible"
           ref={reRef}
         />
-        <label htmlFor="title" className="flex justify-between my-4">
+        <label htmlFor="title" className="flex justify-between my-4 mb-2">
           Title
         </label>
         <select
@@ -106,7 +106,7 @@ const Form: React.FC<Props> = () => {
           <option>Madam</option>
           <option>Other</option>
         </select>
-        <label htmlFor="firstName" className="flex justify-between my-4">
+        <label htmlFor="firstName" className="flex justify-between my-4 mb-2">
           Name
         </label>
         <input
@@ -119,7 +119,7 @@ const Form: React.FC<Props> = () => {
           }
           className="mb-4 transition-all duration-200 ease-in border-b border-burgundy"
         />
-        <label htmlFor="lastName" className="flex justify-between my-4">
+        <label htmlFor="lastName" className="flex justify-between my-4 mb-2">
           Last name
         </label>
         <input
@@ -132,7 +132,7 @@ const Form: React.FC<Props> = () => {
           }
           className="mb-4 transition-all duration-200 ease-in border-b border-burgundy"
         />
-        <label htmlFor="email" className="flex justify-between my-4">
+        <label htmlFor="email" className="flex justify-between my-4 mb-2">
           Email
         </label>
         <input
@@ -146,7 +146,7 @@ const Form: React.FC<Props> = () => {
           }
           className="mb-4 transition-all duration-200 ease-in border-b border-burgundy"
         />
-        <label htmlFor="message" className="flex justify-between my-4">
+        <label htmlFor="message" className="flex justify-between my-4 mb-2">
           Your message
         </label>
         <textarea
@@ -162,7 +162,7 @@ const Form: React.FC<Props> = () => {
         <button
           type="submit"
           name="Send"
-          className="w-4/5 px-4 py-2 m-auto text-white transition-all duration-300 ease-in-out transform border-2 border-solid rounded-lg active:bg-blueDark focus:outline-none focus:shadow-outline border-purple hover:transition-all bg-blue active:translate-y-1 hover:scale-105"
+          className="w-4/5 px-4 py-2 m-auto text-white transition-all duration-300 ease-in-out transform rounded-lg shadow-lg active:bg-blueDark focus:outline-none focus:shadow-outline hover:transition-all bg-blue active:translate-y-1 hover:scale-105"
         >
           Send
         </button>

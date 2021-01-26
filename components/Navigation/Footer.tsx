@@ -42,7 +42,10 @@ const Footer = () => {
           </li>
         </ul>
         <ul className="flex flex-col justify-center text-sm sm:pl-8">
-          <li>Copyright © 2020. All rights reserved.</li>
+          <li>
+            Copyright &copy; 2020 - {new Date().getUTCFullYear()}. All rights
+            reserved.
+          </li>
           <li>
             <Link href="/privacy">
               <a>Privacy notice</a>

@@ -80,7 +80,7 @@ const Inventory = ({ loggedIn }) => {
         <li className="w-4/5 border-b-2 border-blue"></li>
         <li>
           <Link href="/enter">
-            <a className="px-2 text-xl font-bold transition-all duration-200 ease-in-out border-2 border-solid rounded-lg cursor-pointer text-blue hover:text-mauve border-blue">
+            <a className="px-2 text-xl font-bold transition-all duration-200 ease-in-out border-2 border-solid rounded-lg shadow-lg cursor-pointer text-blue hover:text-mauve border-blue">
               +
             </a>
           </Link>

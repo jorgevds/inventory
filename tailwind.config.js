@@ -17,7 +17,8 @@ module.exports = {
       burgundyDark: "#510f15",
       white: "#fff",
       mauve: "#c0a4a1",
-      blue: "#3f657c",
+      blue: "hsl(203, 33%, 37%)",
+      blueLight: "hsl(190, 100%, 85%)",
       blueDark: "#2e4a5a",
     },
     inset: {

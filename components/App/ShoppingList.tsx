@@ -57,7 +57,7 @@ const ShoppingList = ({ loggedIn }) => {
                 }}
               >
                 <p>{item.item}</p>
-                <p className="px-2 text-xl font-bold transition-all duration-200 ease-in-out border-2 border-solid rounded-lg cursor-pointer text-blue hover:text-mauve border-blue">
+                <p className="px-2 text-xl font-bold transition-all duration-200 ease-in-out border-2 border-solid rounded-lg shadow-md cursor-pointer text-blue hover:text-mauve border-blue">
                   +
                 </p>
               </button>

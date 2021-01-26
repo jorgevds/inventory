@@ -2,6 +2,7 @@ const Hero = () => {
   return (
     <section className="flex justify-between min-h-screen sm:flex-col bg-blackMuted align-center">
       <article className="flex flex-col self-center w-5/12 minlg:ml-12 minmd:ml-6 sm:w-5/6">
+        {/* change the image below to png and add box shadow then*/}
         <img
           src="img/inventory.png"
           className="w-full h-auto"

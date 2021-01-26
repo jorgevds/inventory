@@ -19,7 +19,7 @@ const Detail = () => {
       <article className="flex flex-col self-center w-5/12 md:pb-8 minlg:mr-12 minmd:mr-6">
         <img
           src="img/groceries.png"
-          className="w-full h-auto bg-white rounded-lg"
+          className="w-full h-auto bg-white rounded-lg shadow-2xl"
           alt="Inventory app, an image of the grocery list screen on the homepage"
         />
       </article>
