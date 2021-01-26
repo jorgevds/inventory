@@ -13,7 +13,7 @@ const Promo = () => {
 
         <Link href="/order">
           <a>
-            <button className="w-full py-4 m-auto my-8 text-xl text-white transition-all duration-300 ease-in-out transform border-2 border-solid rounded-lg shadow-lg bg-blue focus:outline-none focus:shadow-outline hover:transition-all hover:scale-105 border-burgundy">
+            <button className="w-full py-4 m-auto my-8 text-xl text-white transition-all duration-300 ease-in-out transform rounded-lg shadow-lg bg-blue focus:outline-none focus:shadow-outline hover:transition-all hover:scale-105">
               Register now
             </button>
           </a>

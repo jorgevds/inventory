@@ -55,7 +55,7 @@ const Inventory = ({ loggedIn }) => {
                   .delete();
                 notify();
               }}
-              className="px-4 mx-8 ml-auto text-white transition-all duration-200 ease-in-out border-2 border-solid rounded-lg sm:px-2 hover:transition-all border-burgundy bg-mauve hover:bg-burgundy"
+              className="px-4 mx-8 ml-auto text-white transition-all duration-200 ease-in-out rounded-lg shadow-md sm:px-2 hover:transition-all bg-mauve hover:bg-burgundy"
             >
               Delete
             </button>
