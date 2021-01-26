@@ -100,7 +100,7 @@ const RegisterUser = () => {
         />
         <button
           type="submit"
-          className="w-2/5 p-2 px-4 m-auto mb-12 text-white transition-all duration-300 ease-in-out transform border-2 border-solid rounded-lg shadow-lg active:bg-blueDark focus:outline-none focus:shadow-outline border-purple hover:transition-all bg-blue active:translate-y-1 hover:scale-105"
+          className="w-2/5 p-2 px-4 m-auto mb-12 text-white transition-all duration-300 ease-in-out transform border-2 border-solid rounded-lg shadow-lg active:bg-blueDark focus:outline-none focus:shadow-outline border-blueLight hover:transition-all bg-blue active:translate-y-1 hover:scale-105"
         >
           Register
         </button>

@@ -16,7 +16,7 @@ const CupboardAndCart = ({ loggedIn }) => {
         <button
           className={
             toggleInventory
-              ? "bg-blue text-white py-2 pt-4 border-t-2 border-l-2 border-r-2 border-solid md:px-4 minlg:px-8 rounded-t-xl border-blue focus:outline-none"
+              ? "bg-blue text-white py-2 pt-4 md:px-4 minlg:px-8 rounded-t-xl focus:outline-none"
               : "py-2 pt-4 border-t-2 border-l-2 border-r-2 border-solid md:px-4 minlg:px-8 rounded-t-xl border-blue focus:outline-none"
           }
           onClick={toggleButton}
@@ -26,7 +26,7 @@ const CupboardAndCart = ({ loggedIn }) => {
         <button
           className={
             !toggleInventory
-              ? "bg-blue text-white py-2 pt-4 border-t-2 border-l-2 border-r-2 border-solid md:px-4 minlg:px-8 rounded-t-xl border-purple focus:outline-none"
+              ? "bg-blue text-white py-2 pt-4 md:px-4 minlg:px-8 rounded-t-xl focus:outline-none"
               : "py-2 pt-4 border-t-2 border-l-2 border-r-2 border-solid md:px-4 minlg:px-8 rounded-t-xl border-purple focus:outline-none"
           }
           onClick={toggleButton}
