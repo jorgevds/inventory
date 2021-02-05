@@ -11,7 +11,7 @@ const Promo = () => {
           experience!
         </h3>
 
-        <Link href="/order">
+        <Link href="/users/register">
           <a>
             <button className="w-full py-4 m-auto my-8 text-xl text-white transition-all duration-300 ease-in-out transform rounded-lg shadow-lg bg-blue focus:outline-none focus:shadow-outline hover:transition-all hover:scale-105">
               Register now
