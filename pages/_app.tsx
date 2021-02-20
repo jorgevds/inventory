@@ -2,12 +2,13 @@ import "../tailwind.css";
 import { ToastContainer, Slide } from "react-toastify";
 import "react-toastify/dist/ReactToastify.min.css";
 import { AppProps } from "next/app";
+import { AuthProvider } from "../components/Authentication/AuthContext";
 
 function MyApp(props: AppProps) {
   const { Component, pageProps } = props;
 
   return (
-    <>
+    <AuthProvider>
       <Component {...pageProps} />
       <ToastContainer
         position="top-center"
@@ -21,7 +22,7 @@ function MyApp(props: AppProps) {
         draggable={false}
         pauseOnHover
       />
-    </>
+    </AuthProvider>
   );
 }
 

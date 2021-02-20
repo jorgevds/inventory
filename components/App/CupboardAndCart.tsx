@@ -1,10 +1,9 @@
-import Link from "next/link";
 import Inventory from "./Inventory";
 import ShoppingList from "./ShoppingList";
 import { useState } from "react";
 
 const CupboardAndCart = ({ loggedIn }) => {
-  const [toggleInventory, setToggleInventory] = useState<boolean>(false);
+  const [toggleInventory, setToggleInventory] = useState<boolean>(true);
 
   const toggleButton = () => {
     setToggleInventory((value) => !value);
@@ -36,18 +35,12 @@ const CupboardAndCart = ({ loggedIn }) => {
       </div>
       <div className="flex flex-col w-3/5 min-h-screen m-auto border-solid minmd:shadow-xl minmd:rounded-lg minmd:border-4 border-blue sm:w-screen sm:border-t-4 sm:border-b-4">
         {loggedIn ? (
-          !toggleInventory ? (
-            <ShoppingList loggedIn={loggedIn} />
-          ) : (
+          toggleInventory ? (
             <Inventory loggedIn={loggedIn} />
+          ) : (
+            <ShoppingList loggedIn={loggedIn} />
           )
-        ) : (
-          <div className="flex m-auto mt-16 text-xl">
-            <Link href="/enter">
-              <a>Enter items into your inventory to get started!</a>
-            </Link>
-          </div>
-        )}
+        ) : null}
       </div>
     </div>
   );

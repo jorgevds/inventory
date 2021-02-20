@@ -70,7 +70,7 @@ const RegisterUser = () => {
           name="email"
           onChange={({ target }) => setEmail(target.value)}
           autoComplete="new-password"
-          className="p-4 pt-2 mb-16 transition-all duration-200 ease-in bg-white border-b border-burgundy"
+          className="p-4 pt-2 mb-16 transition-all duration-200 ease-in bg-white border-b border-burgundy focus:outline-none focus:shadow-formField"
         />
         <label htmlFor="password" className="minlg:pt-4">
           Password:
@@ -81,7 +81,7 @@ const RegisterUser = () => {
           name="password"
           onChange={({ target }) => setPassword(target.value)}
           autoComplete="new-password"
-          className="p-4 pt-2 mb-2 transition-all duration-200 ease-in bg-white border-b border-burgundy"
+          className="p-4 pt-2 mb-2 transition-all duration-200 ease-in bg-white border-b border-burgundy focus:outline-none focus:shadow-formField"
         />
         <small className="mb-16">
           Your password must be at least 6 characters in length. We recommend at
@@ -96,7 +96,7 @@ const RegisterUser = () => {
           name="passConf"
           onChange={({ target }) => setPassConf(target.value)}
           autoComplete="new-password"
-          className="p-4 pt-2 mb-24 transition-all duration-200 ease-in bg-white border-b border-burgundy"
+          className="p-4 pt-2 mb-24 transition-all duration-200 ease-in bg-white border-b border-burgundy focus:outline-none focus:shadow-formField"
         />
         <button
           type="submit"

@@ -1,28 +1,17 @@
 import Link from "next/link";
 import { useRouter } from "next/router";
 import Logout from "../Authentication/Logout";
+import { useAuth } from "../Authentication/AuthContext";
 
-const Header = ({ loggedIn }) => {
+const Header = () => {
   const router = useRouter();
+  const { loggedIn } = useAuth();
 
   return (
     <header className="sticky top-0 z-10 bg-white shadow-sm">
       <nav className="flex m-auto minmd:w-3/5">
         <ul className="flex py-4">
-          <li>
-            {loggedIn ? (
-              <Link href="/enter">
-                <a className={router.pathname == "/enter" ? "active" : null}>
-                  Enter
-                </a>
-              </Link>
-            ) : (
-              <Link href="/users/login">
-                <a>Enter</a>
-              </Link>
-            )}
-          </li>
-          <li className="px-2">
+          <li className="minmd:px-4 sm:px-8">
             <Link href="/about">
               <a className={router.pathname == "/about" ? "active" : null}>
                 About

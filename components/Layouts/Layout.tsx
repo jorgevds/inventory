@@ -2,34 +2,11 @@ import Head from "next/head";
 import Header from "../Navigation/Header";
 import Footer from "../Navigation/Footer";
 import Snackbar from "../Authentication/Snackbar";
-import fire from "../../config/fire-config";
 import React, { useState } from "react";
 
 const Layout = ({ children, title = "" }) => {
   const [token, setToken] = useState<boolean>(false);
-  const [loggedIn, setLoggedIn] = useState<boolean>(false);
   const fullTitle = "Inventory";
-
-  fire.auth().onAuthStateChanged((user) => {
-    if (user) {
-      user.getIdToken().then(function (token) {
-        window.sessionStorage.getItem(token);
-        if (token) {
-          setToken(true);
-          setLoggedIn(true);
-          fetch(window.location.href, {
-            method: "POST",
-            headers: {
-              "Content-Type": "application/json",
-              Authorization: token,
-            },
-          });
-        }
-      });
-    } else {
-      setLoggedIn(false);
-    }
-  });
 
   return (
     <>
@@ -88,9 +65,9 @@ const Layout = ({ children, title = "" }) => {
           content="Inventory: your gateway to clean, easy grocery shopping!"
         />
       </Head>
-      <Header loggedIn={loggedIn} />
+      <Header />
       {children}
-      {!token && <Snackbar />}
+      <Snackbar />
       <Footer />
     </>
   );

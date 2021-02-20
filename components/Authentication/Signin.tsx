@@ -38,13 +38,17 @@ const Signin = () => {
         user.getIdToken().then(function (token) {
           window.sessionStorage.getItem(token);
           if (token) {
-            fetch(window.location.href, {
-              method: "POST",
-              headers: {
-                "Content-Type": "application/json",
-                Authorization: token,
-              },
-            });
+            try {
+              fetch(window.location.href, {
+                method: "POST",
+                headers: {
+                  "Content-Type": "application/json",
+                  Authorization: token,
+                },
+              });
+            } catch (error) {
+              notifySessionFailure();
+            }
           }
         });
 
@@ -70,7 +74,7 @@ const Signin = () => {
           value={username}
           name="username"
           onChange={({ target }) => setUsername(target.value)}
-          className="p-4 pt-2 mb-16 transition-all duration-200 ease-in bg-white border-b border-burgundy"
+          className="p-4 pt-2 mb-16 transition-all duration-200 ease-in bg-white border-b border-burgundy focus:outline-none focus:shadow-formField"
         />
         <label htmlFor="password" className="minlg:pt-4">
           Password
@@ -80,7 +84,7 @@ const Signin = () => {
           value={password}
           name="password"
           onChange={({ target }) => setPassword(target.value)}
-          className="p-4 pt-2 mb-24 transition-all duration-200 ease-in bg-white border-b border-burgundy"
+          className="p-4 pt-2 mb-24 transition-all duration-200 ease-in bg-white border-b border-burgundy focus:outline-none focus:shadow-formField"
         />
         <button
           type="submit"

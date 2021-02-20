@@ -2,6 +2,7 @@ import { useState, useEffect } from "react";
 import Link from "next/link";
 import fire from "../../config/fire-config";
 import { toast } from "react-toastify";
+import EnterForm from "./EnterTab";
 
 const Inventory = ({ loggedIn }) => {
   const [itemsList, setItemsList] = useState([]);
@@ -33,6 +34,7 @@ const Inventory = ({ loggedIn }) => {
 
   return (
     <ul className="flex flex-col">
+      <EnterForm />
       {!itemsList.length ? (
         <div className="m-auto mt-16 text-xl lg:text-center">
           Click <span className="text-blue">Enter</span> above or the{" "}
@@ -55,7 +57,7 @@ const Inventory = ({ loggedIn }) => {
                   .delete();
                 notify();
               }}
-              className="px-4 mx-8 ml-auto text-white transition-all duration-200 ease-in-out rounded-lg shadow-md sm:px-2 hover:transition-all bg-mauve hover:bg-burgundy"
+              className="px-4 mx-8 ml-auto text-white transition-all duration-200 ease-in-out rounded-lg shadow-md focus:outline-none sm:px-2 hover:transition-all bg-mauve hover:bg-burgundy"
             >
               Delete
             </button>
@@ -71,21 +73,11 @@ const Inventory = ({ loggedIn }) => {
                     amount: `${event.target.value}`,
                   })
               }
-              className="w-12 text-center border-b border-burgundy"
+              className="w-12 text-center border-b border-burgundy focus:outline-none focus:shadow-formField"
             />
           </li>
         ))
       )}
-      <ul className="flex my-20 justify-evenly">
-        <li className="w-4/5 border-b-2 border-blue"></li>
-        <li>
-          <Link href="/enter">
-            <a className="px-2 text-xl font-bold transition-all duration-200 ease-in-out border-2 border-solid rounded-lg shadow-lg cursor-pointer text-blue hover:text-mauve border-blue">
-              +
-            </a>
-          </Link>
-        </li>
-      </ul>
     </ul>
   );
 };

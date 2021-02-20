@@ -47,7 +47,7 @@ const ResetPassword = () => {
           name="emailAddress"
           onChange={({ target }) => setEmailAddress(target.value)}
           required
-          className="p-4 mb-12 transition-all duration-200 ease-in bg-white border-b border-burgundy"
+          className="p-4 mb-12 transition-all duration-200 ease-in bg-white border-b border-burgundy focus:outline-none focus:shadow-formField"
         />
         <button
           type="submit"

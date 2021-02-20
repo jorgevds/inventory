@@ -1,28 +1,23 @@
-import { useState, useEffect } from "react";
+import { useState } from "react";
 import fire from "../../config/fire-config";
-import { useRouter } from "next/router";
 import { toast } from "react-toastify";
 
 interface Props {
   itemCategory?: string;
   itemAmount?: number;
   submit?: boolean;
-  loggedIn?: boolean;
 }
 
-const EnterForm: React.FC<Props> = ({ loggedIn }) => {
-  const router = useRouter();
-
+const EnterForm: React.FC<Props> = () => {
   const [itemCategory, setItemCategory] = useState<string>("");
   const [itemAmount, setItemAmount] = useState<number>(1);
   const [itemType, setItemType] = useState<string>();
 
   const [submit, setSubmit] = useState(false);
 
-  const notifySuccess = () =>
-    toast.success("Item successfully added to your inventory!");
   const notifySubmitError = () =>
     toast.warning("Something went wrong. Please try again!");
+
   const user = fire.auth().currentUser;
 
   const itemTypeList = [
@@ -38,6 +33,7 @@ const EnterForm: React.FC<Props> = ({ loggedIn }) => {
     { id: 10, name: "bottle" },
     { id: 11, name: "jar" },
     { id: 12, name: "jug" },
+    { id: 13, name: "can" },
   ];
 
   const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
@@ -52,39 +48,21 @@ const EnterForm: React.FC<Props> = ({ loggedIn }) => {
         amount: itemAmount,
         type: itemType,
       })
-      .catch((err) => {
+      .catch(() => {
         notifySubmitError();
       });
 
-    notifySuccess();
     setItemCategory("");
     setItemAmount(1);
     setSubmit(true);
   };
 
-  // useEffect(() => {
-  //   {
-  //     !loggedIn ? router.push("/users/login") : router.push("/enter");
-  //   }
-  // }, []);
-
   return (
-    <section className="flex flex-col flex-1 pb-8 m-auto minmd:w-3/5">
-      <article className="m-auto mb-8">
-        <h2 className="my-4">Enter items into your inventory</h2>
-        <h3 className="my-4">
-          Hit <span className="text-blue">enter</span> to register your
-          inventory items
-        </h3>
-      </article>
-
-      <form
-        onSubmit={handleSubmit}
-        className="flex flex-col flex-1 pt-12 m-auto border-solid minmd:shadow-xl lg:p-4 md:p-8 minmd:rounded-lg minmd:border-4 minmd:justify-between minlg:w-3/5 border-blue sm:w-screen sm:border-t-4 sm:border-b-4"
-      >
-        <label className="flex justify-between mx-4 my-8 minlg:mx-6 minlg:my-8 sm:flex-col">
-          Enter your item
+    <section className="flex flex-col max-w-full m-auto mb-8 border-b border-solid justify-evenly border-burgundy">
+      <form onSubmit={handleSubmit} className="flex pt-12 mx-4">
+        <label htmlFor="itemCategory">
           <input
+            id="itemCategory"
             type="text"
             value={itemCategory}
             required
@@ -92,34 +70,33 @@ const EnterForm: React.FC<Props> = ({ loggedIn }) => {
             onChange={(event: React.ChangeEvent<HTMLInputElement>): void =>
               setItemCategory(event.target.value)
             }
-            className="transition-all duration-200 ease-in border-b minmd:w-3/5 sm:mt-8 border-burgundy"
+            className="w-full pr-4 focus:outline-none"
           />
         </label>
-        <label className="flex justify-between mx-4 my-8 minlg:mx-6 minlg:my-8 sm:flex-col">
-          Specify the amount
+        <label htmlFor="itemAmount">
           <input
+            id="itemAmount"
             type="number"
-            name="itemAmount"
             value={itemAmount}
             onChange={(event: React.ChangeEvent<HTMLInputElement>): void =>
               setItemAmount(parseInt(event.target.value))
             }
-            className="text-center transition-all duration-200 ease-in border-b sm:mt-8 minmd:w-1/5 border-burgundy"
+            className="w-full text-right shadow-md focus:outline-none"
           ></input>
         </label>
-        <label className="flex justify-between mx-4 my-8 minlg:mx-6 minlg:my-8 sm:flex-col">
-          Choose a type
+        <label htmlFor="itemType">
           <select
+            id="itemType"
             name="type"
             value={itemType}
             onChange={(event: React.ChangeEvent<HTMLSelectElement>): void =>
               setItemType(event.target.value)
             }
             defaultValue={"default"}
-            className="mb-16 transition-all duration-200 ease-in border-b minmd:w-3/5 sm:mt-8 border-burgundy"
+            className="minlg:px-4 minlg:mr-2 focus:outline-none"
           >
             <option value="default" disabled>
-              Type of item purchased
+              Item type
             </option>
             {itemTypeList.map((itemTypeList) => (
               <option key={itemTypeList.id} value={itemTypeList.name}>
@@ -129,13 +106,12 @@ const EnterForm: React.FC<Props> = ({ loggedIn }) => {
             ;
           </select>
         </label>
-
         <button
           type="submit"
           name="Enter"
-          className="w-4/5 px-4 py-2 m-auto text-white transition-all duration-300 ease-in-out transform border-2 border-solid rounded-lg minlg:mb-6 active:bg-blueDark focus:outline-none focus:shadow-outline border-purple hover:transition-all bg-blue active:translate-y-1 hover:scale-105"
+          className="px-4 m-auto mx-4 mb-6 text-white transition-all duration-300 ease-in-out transform rounded-lg active:bg-blueDark focus:outline-none focus:shadow-outline hover:transition-all bg-blue active:translate-y-1 hover:scale-105"
         >
-          Enter
+          +
         </button>
       </form>
     </section>

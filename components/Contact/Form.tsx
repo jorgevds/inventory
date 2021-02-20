@@ -61,7 +61,6 @@ const Form: React.FC<Props> = () => {
         })
         .catch((err) => {
           notifyFormError();
-          console.log(err);
         });
 
       notifyFormSuccess();
@@ -91,13 +90,14 @@ const Form: React.FC<Props> = () => {
           Title
         </label>
         <select
+          id="title"
           name="title"
           required
           value={title}
           onChange={(event: React.ChangeEvent<HTMLSelectElement>): void =>
             setTitle(event.target.value)
           }
-          className="mb-4 transition-all duration-200 ease-in border-b border-burgundy"
+          className="mb-4 transition-all duration-200 ease-in border-b border-burgundy focus:outline-none focus:shadow-formField"
         >
           <option defaultChecked disabled value="">
             Select your title
@@ -110,6 +110,7 @@ const Form: React.FC<Props> = () => {
           Name
         </label>
         <input
+          id="firstName"
           type="text"
           name="firstName"
           placeholder="first name"
@@ -117,12 +118,13 @@ const Form: React.FC<Props> = () => {
           onChange={(event: React.ChangeEvent<HTMLInputElement>): void =>
             setFirstName(event.target.value)
           }
-          className="mb-4 transition-all duration-200 ease-in border-b border-burgundy"
+          className="mb-4 transition-all duration-200 ease-in border-b border-burgundy focus:outline-none focus:shadow-formField"
         />
         <label htmlFor="lastName" className="flex justify-between my-4 mb-2">
           Last name
         </label>
         <input
+          id="lastName"
           type="text"
           name="lastName"
           placeholder="last name"
@@ -130,12 +132,13 @@ const Form: React.FC<Props> = () => {
           onChange={(event: React.ChangeEvent<HTMLInputElement>): void =>
             setLastName(event.target.value)
           }
-          className="mb-4 transition-all duration-200 ease-in border-b border-burgundy"
+          className="mb-4 transition-all duration-200 ease-in border-b border-burgundy focus:outline-none focus:shadow-formField"
         />
         <label htmlFor="email" className="flex justify-between my-4 mb-2">
           Email
         </label>
         <input
+          id="email"
           type="email"
           name="email"
           placeholder="email"
@@ -144,12 +147,13 @@ const Form: React.FC<Props> = () => {
           onChange={(event: React.ChangeEvent<HTMLInputElement>): void =>
             setEmail(event.target.value)
           }
-          className="mb-4 transition-all duration-200 ease-in border-b border-burgundy"
+          className="mb-4 transition-all duration-200 ease-in border-b border-burgundy focus:outline-none focus:shadow-formField"
         />
         <label htmlFor="message" className="flex justify-between my-4 mb-2">
           Your message
         </label>
         <textarea
+          id="message"
           name="message"
           placeholder="Leave your message for our team here"
           required
@@ -157,7 +161,7 @@ const Form: React.FC<Props> = () => {
           onChange={(event: React.ChangeEvent<HTMLTextAreaElement>): void =>
             setMessage(event.target.value)
           }
-          className="mb-16 transition-all duration-200 ease-in border-b border-burgundy min-h-1/8"
+          className="mb-16 transition-all duration-200 ease-in border-b border-burgundy min-h-1/8 focus:outline-none focus:shadow-formField"
         />
         <button
           type="submit"

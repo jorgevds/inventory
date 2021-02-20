@@ -14,11 +14,6 @@ const Footer = () => {
             </Link>
           </li>
           <li>
-            <Link href="/enter">
-              <a>Enter</a>
-            </Link>
-          </li>
-          <li>
             <Link href="/about">
               <a>About</a>
             </Link>
