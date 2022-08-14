@@ -1,7 +1,8 @@
-import Head from "next/head";
-import Header from "../Navigation/Header";
-import Footer from "../Navigation/Footer";
-import React from "react";
+import Head from 'next/head';
+import React from 'react';
+
+import Footer from '../Navigation/Footer';
+import Header from '../Navigation/Header';
 
 interface LayoutProps {
     children: React.ReactNode;

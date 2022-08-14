@@ -1,7 +1,7 @@
-import Logout from "../Authentication/Logout";
-import { useAuth } from "../Authentication/AuthContext";
-import { ActiveLink } from "./ActiveLink";
-import { HomeLink } from "./HomeLink";
+import { useAuth } from '../Authentication/AuthContext';
+import Logout from '../Authentication/Logout';
+import { ActiveLink } from './ActiveLink';
+import { HomeLink } from './HomeLink';
 
 const Header = () => {
     const { loggedIn } = useAuth();
@@ -42,7 +42,7 @@ const Header = () => {
             <ul className="minlg:hidden">
                 <li className="m-auto">
                     <HomeLink
-                        className={`text-3xl text-center ${homeLinkClasses}`}
+                        className={`text-center text-3xl ${homeLinkClasses}`}
                     />
                 </li>
             </ul>

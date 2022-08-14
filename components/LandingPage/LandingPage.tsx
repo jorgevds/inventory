@@ -1,6 +1,6 @@
-import Detail from "./Detail";
-import Hero from "./HeroBanner";
-import Promo from "./Promo";
+import Detail from './Detail';
+import Hero from './HeroBanner';
+import Promo from './Promo';
 
 const Landing = () => {
     return (

@@ -1,4 +1,4 @@
-import Link from "next/link";
+import Link from 'next/link';
 
 const Promo = () => {
     return (
@@ -15,7 +15,7 @@ const Promo = () => {
 
                 <Link href="/users/signup">
                     <a>
-                        <button className="w-full py-4 m-auto my-8 text-xl text-white transition-all duration-300 ease-in-out transform rounded-lg shadow-lg bg-blue focus:outline-none focus:shadow-outline hover:transition-all hover:scale-105">
+                        <button className="w-full py-4 m-auto my-8 text-xl text-white transition-all duration-300 ease-in-out transform rounded-lg shadow-lg focus:shadow-outline bg-blue hover:scale-105 hover:transition-all focus:outline-none">
                             Sign up now
                         </button>
                     </a>

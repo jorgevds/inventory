@@ -1,10 +1,11 @@
-import Link from "next/link";
-import { HomeLink } from "./HomeLink";
+import Link from 'next/link';
+
+import { HomeLink } from './HomeLink';
 
 const Footer = () => {
     return (
         <footer className="z-10">
-            <nav className="pt-8 pb-12 mt-16 text-white minmd:flex minlg:px-20 minmd:px-10 minmd:justify-evenly bg-blue">
+            <nav className="pt-8 pb-12 mt-16 text-white bg-blue minlg:px-20 minmd:flex minmd:justify-evenly minmd:px-10">
                 <ul className="text-2xl font-title sm:text-center">
                     <li>
                         <HomeLink />

@@ -1,6 +1,7 @@
-import { ReactText } from "react";
-import { toast, ToastContent, ToastOptions } from "react-toastify";
-import { Toast, ToastStatus } from "./toast.entity";
+import { ReactText } from 'react';
+import { toast, ToastContent, ToastOptions } from 'react-toastify';
+
+import { Toast, ToastStatus } from './toast.entity';
 
 export const toaster = (toastBody: Toast) => {
     const map: {
