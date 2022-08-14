@@ -1,9 +1,11 @@
-import { useState } from "react";
-import fire from "../../config/fire-config";
-import { Toast, ToastStatus } from "../../utils/toasts/toast.entity";
-import { toaster } from "../../utils/toasts/Toaster";
-import { CaptchaCheck } from "../CaptchaCheck";
-import Form from "./Form";
+import { fireDatabase } from '@fire-config';
+import { Toast, ToastStatus } from '@toaster/toast.entity';
+import { toaster } from '@toaster/Toaster';
+import { collection, doc, setDoc } from 'firebase/firestore';
+import { useState } from 'react';
+
+import { CaptchaCheck } from '../CaptchaCheck';
+import Form from './Form';
 
 export interface ContactSubmitProps {
     clearState: boolean[];
@@ -86,22 +88,23 @@ const Contact = () => {
         const data = await response.json();
 
         if (data.response == "success") {
-            return fire
-                .firestore()
-                .collection("contact-form")
-                .doc(email + " " + window.Date())
-                .set({
+            const collectionRef = collection(fireDatabase, "contact-form");
+
+            return await setDoc(
+                doc(collectionRef, email + " " + window.Date()),
+                {
                     title: title,
                     firstName: firstName,
                     lastName: lastName,
                     email: email,
                     message: message,
-                })
+                },
+            )
                 .then(() => {
                     toaster(messageSubmitted);
                     return true;
                 })
-                .catch((err) => {
+                .catch((err: any) => {
                     console.error("Contact: Firestore error:", err);
                     return false;
                 });
@@ -111,7 +114,7 @@ const Contact = () => {
     };
 
     return (
-        <section className="flex flex-col flex-1 py-4 m-auto minlg:py-12 minmd:w-3/5 md:w-full">
+        <section className="m-auto flex flex-1 flex-col py-4 minlg:py-12 minmd:w-3/5 md:w-full">
             <article className="m-auto mb-8">
                 <h2 className="my-4">Got questions?</h2>
                 <h2 className="my-4">We might have answers!</h2>

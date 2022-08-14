@@ -1,7 +1,7 @@
-import React, { useEffect, useRef } from "react";
-import ReCAPTCHA from "react-google-recaptcha";
-import { Toast, ToastStatus } from "../utils/toasts/toast.entity";
-import { toaster } from "../utils/toasts/Toaster";
+import { Toast, ToastStatus } from '@toaster/toast.entity';
+import { toaster } from '@toaster/Toaster';
+import React, { useEffect, useRef } from 'react';
+import ReCAPTCHA from 'react-google-recaptcha';
 
 export interface CaptchaCheckProps {
     validateCaptchaToken: (token: string) => void;
