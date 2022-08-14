@@ -1,5 +1,5 @@
-import Layout from "../components/Layouts/Layout";
-import Privacy from "../components/Static/Privacy";
+import Layout from '../components/Layouts/Layout';
+import Privacy from '../components/Static/Privacy';
 
 const PrivacyNotice = () => {
     return (
