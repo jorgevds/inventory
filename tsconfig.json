@@ -12,7 +12,14 @@
         "moduleResolution": "node",
         "resolveJsonModule": true,
         "isolatedModules": true,
-        "jsx": "preserve"
+        "jsx": "preserve",
+        "incremental": true,
+        "baseUrl": ".",
+        "paths": {
+            "@helpers/*": ["utils/helpers/*"],
+            "@fire-config": ["config/fire-config"],
+            "@toaster/*": ["utils/toasts/*"]
+        }
     },
     "include": [
         "next-env.d.ts",

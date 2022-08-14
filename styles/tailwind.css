@@ -13,7 +13,11 @@ input[type="number"]::-webkit-outer-spin-button {
 }
 
 .signup-button {
-    @apply text-white w-2/5 p-2 px-4 m-auto mb-12 transition-all duration-300 ease-in-out transform rounded-lg shadow-lg;
+    @apply m-auto mb-12 w-2/5 transform rounded-lg p-2 px-4 text-white shadow-lg transition-all duration-300 ease-in-out;
+}
+
+.counter-button {
+    @apply m-auto mx-4 mb-6 transform rounded-lg px-4 text-white transition-all duration-300 ease-in-out;
 }
 
 .active {
