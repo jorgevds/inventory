@@ -1,9 +1,10 @@
-import { FormEvent, useState } from "react";
-import fire from "../../config/fire-config";
-import Link from "next/link";
-import { useRouter } from "next/router";
-import { Toast, ToastStatus } from "../../utils/toasts/toast.entity";
-import { toaster } from "../../utils/toasts/Toaster";
+import { auth } from '@fire-config';
+import { Toast, ToastStatus } from '@toaster/toast.entity';
+import { toaster } from '@toaster/Toaster';
+import { onAuthStateChanged, signInWithEmailAndPassword } from 'firebase/auth';
+import Link from 'next/link';
+import { useRouter } from 'next/router';
+import { FormEvent, useState } from 'react';
 
 const Signin = () => {
     const router = useRouter();
@@ -24,21 +25,19 @@ const Signin = () => {
         ToastStatus.WARNING,
     );
 
-    const handleLogin = (e: FormEvent<HTMLFormElement>) => {
+    const handleLogin = async (e: FormEvent<HTMLFormElement>) => {
         e.preventDefault();
 
-        fire.auth()
-            .signInWithEmailAndPassword(username, password)
-            .catch(() => {
-                setPassword("");
+        await signInWithEmailAndPassword(auth, username, password).catch(() => {
+            setPassword("");
 
-                toaster(errorToast);
-                setTimeout(() => {
-                    toaster(loginDetailsIncorrectToast);
-                }, 1000);
-            });
+            toaster(errorToast);
+            setTimeout(() => {
+                toaster(loginDetailsIncorrectToast);
+            }, 1000);
+        });
 
-        fire.auth().onAuthStateChanged((user) => {
+        onAuthStateChanged(auth, (user) => {
             if (user) {
                 toaster(successToast);
 
@@ -82,7 +81,7 @@ const Signin = () => {
                     value={username}
                     name="username"
                     onChange={({ target }) => setUsername(target.value)}
-                    className="p-4 pt-2 mb-16 transition-all duration-200 ease-in bg-white border-b border-burgundy focus:outline-none focus:shadow-formField"
+                    className="p-4 pt-2 mb-16 transition-all duration-200 ease-in bg-white border-b border-burgundy focus:shadow-formField focus:outline-none"
                 />
                 <label htmlFor="password" className="minlg:pt-4">
                     Password
@@ -92,11 +91,11 @@ const Signin = () => {
                     value={password}
                     name="password"
                     onChange={({ target }) => setPassword(target.value)}
-                    className="p-4 pt-2 mb-24 transition-all duration-200 ease-in bg-white border-b border-burgundy focus:outline-none focus:shadow-formField"
+                    className="p-4 pt-2 mb-24 transition-all duration-200 ease-in bg-white border-b border-burgundy focus:shadow-formField focus:outline-none"
                 />
                 <button
                     type="submit"
-                    className="w-2/5 p-2 px-4 m-auto mb-6 text-white transition-all duration-300 ease-in-out transform rounded-lg shadow-lg active:bg-blueDark focus:outline-none focus:shadow-outline hover:transition-all bg-blue active:translate-y-1 hover:scale-105"
+                    className="w-2/5 p-2 px-4 m-auto mb-6 text-white transition-all duration-300 ease-in-out transform rounded-lg shadow-lg focus:shadow-outline bg-blue hover:scale-105 hover:transition-all focus:outline-none active:translate-y-1 active:bg-blueDark"
                 >
                     Login
                 </button>

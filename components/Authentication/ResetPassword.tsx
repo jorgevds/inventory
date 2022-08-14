@@ -1,8 +1,9 @@
-import fire from "../../config/fire-config";
-import { FormEvent, useState } from "react";
-import { useRouter } from "next/router";
-import { Toast, ToastStatus } from "../../utils/toasts/toast.entity";
-import { toaster } from "../../utils/toasts/Toaster";
+import { auth } from '@fire-config';
+import { Toast, ToastStatus } from '@toaster/toast.entity';
+import { toaster } from '@toaster/Toaster';
+import { sendPasswordResetEmail } from 'firebase/auth';
+import { useRouter } from 'next/router';
+import { FormEvent, useState } from 'react';
 
 const ResetPassword = () => {
     const router = useRouter();
@@ -17,11 +18,10 @@ const ResetPassword = () => {
         ToastStatus.ERROR,
     );
 
-    const handlePasswordReset = (e: FormEvent<HTMLFormElement>) => {
+    const handlePasswordReset = async (e: FormEvent<HTMLFormElement>) => {
         e.preventDefault();
 
-        fire.auth()
-            .sendPasswordResetEmail(emailAddress)
+        await sendPasswordResetEmail(auth, emailAddress)
             .then(() => {
                 toaster(successToast);
                 router.push("/");
@@ -51,11 +51,11 @@ const ResetPassword = () => {
                     name="emailAddress"
                     onChange={({ target }) => setEmailAddress(target.value)}
                     required
-                    className="p-4 mb-12 transition-all duration-200 ease-in bg-white border-b border-burgundy focus:outline-none focus:shadow-formField"
+                    className="p-4 mb-12 transition-all duration-200 ease-in bg-white border-b border-burgundy focus:shadow-formField focus:outline-none"
                 />
                 <button
                     type="submit"
-                    className="w-2/5 p-2 px-4 m-auto mb-12 text-white transition-all duration-300 ease-in-out transform border-2 border-solid rounded-lg active:bg-blueDark focus:outline-none focus:shadow-outline border-purple hover:transition-all bg-blue active:translate-y-1 hover:scale-105"
+                    className="w-2/5 p-2 px-4 m-auto mb-12 text-white transition-all duration-300 ease-in-out transform border-2 border-solid rounded-lg focus:shadow-outline border-purple bg-blue hover:scale-105 hover:transition-all focus:outline-none active:translate-y-1 active:bg-blueDark"
                 >
                     Reset password
                 </button>

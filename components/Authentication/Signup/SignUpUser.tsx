@@ -1,8 +1,9 @@
-import { useState } from "react";
-import { useRouter } from "next/router";
-import { onSignUp, SignupData, SignUpResult } from "./util";
-import { SignUpDedicatedPage } from "./SignUpDedicatedPage";
-import { SignUpHomePage } from "./SignUpHomePage";
+import { useRouter } from 'next/router';
+import { useState } from 'react';
+
+import { SignUpDedicatedPage } from './SignUpDedicatedPage';
+import { SignUpHomePage } from './SignUpHomePage';
+import { onSignUp, SignupData, SignUpResult } from './util';
 
 export interface SignUpPageProps {
     clearPassword: boolean[];

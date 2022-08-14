@@ -1,5 +1,6 @@
-import React, { FormEvent, useEffect, useState } from "react";
-import { SignUpPageProps } from "./SignUpUser";
+import React, { FormEvent, useEffect, useState } from 'react';
+
+import { SignUpPageProps } from './SignUpUser';
 
 export const SignUpDedicatedPage: React.FC<SignUpPageProps> = ({
     handleChange,
@@ -42,7 +43,7 @@ export const SignUpDedicatedPage: React.FC<SignUpPageProps> = ({
                     name="email"
                     onChange={({ target }) => setEmail(target.value)}
                     autoComplete="new-password"
-                    className="p-4 pt-2 mb-16 transition-all duration-200 ease-in bg-white border-b border-burgundy focus:outline-none focus:shadow-formField"
+                    className="p-4 pt-2 mb-16 transition-all duration-200 ease-in bg-white border-b border-burgundy focus:shadow-formField focus:outline-none"
                 />
                 <label htmlFor="password" className="minlg:pt-4">
                     Password:
@@ -53,7 +54,7 @@ export const SignUpDedicatedPage: React.FC<SignUpPageProps> = ({
                     name="password"
                     onChange={({ target }) => setPassword(target.value)}
                     autoComplete="new-password"
-                    className="p-4 pt-2 mb-2 transition-all duration-200 ease-in bg-white border-b border-burgundy focus:outline-none focus:shadow-formField"
+                    className="p-4 pt-2 mb-2 transition-all duration-200 ease-in bg-white border-b border-burgundy focus:shadow-formField focus:outline-none"
                 />
                 <small className="mb-16">
                     Your password must be at least 6 characters in length. We
@@ -70,7 +71,7 @@ export const SignUpDedicatedPage: React.FC<SignUpPageProps> = ({
                         setPasswordConfirmation(target.value)
                     }
                     autoComplete="new-password"
-                    className="p-4 pt-2 mb-24 transition-all duration-200 ease-in bg-white border-b border-burgundy focus:outline-none focus:shadow-formField"
+                    className="p-4 pt-2 mb-24 transition-all duration-200 ease-in bg-white border-b border-burgundy focus:shadow-formField focus:outline-none"
                 />
                 <button
                     type="submit"
@@ -78,8 +79,8 @@ export const SignUpDedicatedPage: React.FC<SignUpPageProps> = ({
                         !email ||
                         password.length < 6 ||
                         passwordConfirmation.length < 6
-                            ? "signup-button bg-grey pointer-events-none"
-                            : "signup-button bg-blue active:bg-blueDark focus:outline-none focus:shadow-outline hover:transition-all active:translate-y-1 hover:scale-105"
+                            ? "signup-button pointer-events-none bg-grey"
+                            : "signup-button focus:shadow-outline bg-blue hover:scale-105 hover:transition-all focus:outline-none active:translate-y-1 active:bg-blueDark"
                     }
                     disabled={
                         !email ||

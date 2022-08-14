@@ -1,5 +1,6 @@
-import { FormEvent, useEffect, useState } from "react";
-import { SignUpPageProps } from "./SignUpUser";
+import { FormEvent, useEffect, useState } from 'react';
+
+import { SignUpPageProps } from './SignUpUser';
 
 export const SignUpHomePage: React.FC<SignUpPageProps> = ({
     handleChange,
@@ -23,8 +24,8 @@ export const SignUpHomePage: React.FC<SignUpPageProps> = ({
     }, [clearPassword.length]);
 
     return (
-        <section className="flex items-center flex-1 py-12 md:p-8 sm:flex-col md:pb-12 bg-blue justify-evenly">
-            <article className="flex flex-col self-start text-white sm:text-center sm:mb-8">
+        <section className="flex items-center flex-1 py-12 justify-evenly bg-blue md:p-8 md:pb-12 sm:flex-col">
+            <article className="flex flex-col self-start text-white sm:mb-8 sm:text-center">
                 <h2 className="py-2 text-3xl minmd:mt-8">
                     Sick of paper grocery lists?
                 </h2>
@@ -50,7 +51,7 @@ export const SignUpHomePage: React.FC<SignUpPageProps> = ({
                     name="email"
                     onChange={({ target }) => setEmail(target.value)}
                     autoComplete="new-password"
-                    className="p-2 mb-12 transition-all duration-200 ease-in bg-white border-b border-burgundy focus:focus:outline-none focus:shadow-formField"
+                    className="p-2 mb-12 transition-all duration-200 ease-in bg-white border-b border-burgundy focus:shadow-formField focus:focus:outline-none"
                 />
                 <label htmlFor="password" className="minlg:pt-4">
                     Password:
@@ -61,7 +62,7 @@ export const SignUpHomePage: React.FC<SignUpPageProps> = ({
                     name="password"
                     onChange={({ target }) => setPassword(target.value)}
                     autoComplete="new-password"
-                    className="p-2 mb-2 transition-all duration-200 ease-in bg-white border-b border-burgundy focus:focus:outline-none focus:shadow-formField"
+                    className="p-2 mb-2 transition-all duration-200 ease-in bg-white border-b border-burgundy focus:shadow-formField focus:focus:outline-none"
                 />
                 <small className="mb-8">
                     Your password must be at least 6 characters in length. We
@@ -78,7 +79,7 @@ export const SignUpHomePage: React.FC<SignUpPageProps> = ({
                         setPasswordConfirmation(target.value)
                     }
                     autoComplete="new-password"
-                    className="p-2 mb-12 transition-all duration-200 ease-in bg-white border-b border-burgundy focus:focus:outline-none focus:shadow-formField"
+                    className="p-2 mb-12 transition-all duration-200 ease-in bg-white border-b border-burgundy focus:shadow-formField focus:focus:outline-none"
                 />
                 <button
                     type="submit"
@@ -86,8 +87,8 @@ export const SignUpHomePage: React.FC<SignUpPageProps> = ({
                         !email ||
                         password.length < 6 ||
                         passwordConfirmation.length < 6
-                            ? "signup-button bg-grey pointer-events-none"
-                            : "signup-button bg-blue active:bg-blueDark focus:outline-none focus:shadow-outline hover:transition-all active:translate-y-1 hover:scale-105"
+                            ? "signup-button pointer-events-none bg-grey"
+                            : "signup-button focus:shadow-outline bg-blue hover:scale-105 hover:transition-all focus:outline-none active:translate-y-1 active:bg-blueDark"
                     }
                     disabled={
                         !email ||
