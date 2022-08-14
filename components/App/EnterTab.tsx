@@ -1,16 +1,26 @@
-import { useState } from "react";
-import fire from "../../config/fire-config";
-import { toaster } from "../../utils/toasts/Toaster";
-import { ToastStatus } from "../../utils/toasts/toast.entity";
+import { fireDatabase } from '@fire-config';
+import { ToastStatus } from '@toaster/toast.entity';
+import { toaster } from '@toaster/Toaster';
+import { User } from 'firebase/auth';
+import { doc, setDoc } from 'firebase/firestore';
+import { useState } from 'react';
+
+import { InventoryItem } from './entities/inventory-item.entity';
 
 interface EnterFormProps {
-    user: firebase.User | null;
+    user: User | null;
+    bubbleItemEntered: () => void;
 }
 
-const EnterForm: React.FC<EnterFormProps> = ({ user }) => {
-    const [itemCategory, setItemCategory] = useState<string>("");
-    const [itemAmount, setItemAmount] = useState<number>(1);
-    const [itemType, setItemType] = useState<string>();
+const EnterForm: React.FC<EnterFormProps> = ({
+    user,
+    bubbleItemEntered: emitItem,
+}) => {
+    const [enterItem, setEnterItem] = useState<InventoryItem>({
+        item: "",
+        amount: 1,
+        type: "",
+    });
 
     const itemTypeList = [
         { id: 1, name: "unit(s)" },
@@ -28,28 +38,38 @@ const EnterForm: React.FC<EnterFormProps> = ({ user }) => {
         { id: 13, name: "can" },
     ];
 
-    const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
+    const changeValue = (event: any) => {
+        setEnterItem((prevState: InventoryItem) => ({
+            ...prevState,
+            [event.target.name]:
+                event.target.name === "amount"
+                    ? parseInt(event.target.value)
+                    : event.target.value,
+        }));
+    };
+
+    const handleSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
         event.preventDefault();
 
-        fire.firestore()
-            .collection(`${user?.email}`)
-            .doc(itemCategory)
-            .set({
-                item: itemCategory,
-                amount: itemAmount,
-                type: itemType,
-            })
-            .catch((error) => {
-                toaster({
-                    message: "Something went wrong. Please try again!",
-                    status: ToastStatus.ERROR,
-                });
-                console.error(`EnterTab: FireStore error -- ${error}`);
+        await setDoc(doc(fireDatabase, `${user?.email}`, enterItem.item), {
+            ...enterItem,
+        }).catch((error) => {
+            toaster({
+                message: "Something went wrong. Please try again!",
+                status: ToastStatus.ERROR,
             });
+            console.error(`EnterTab: FireStore error -- ${error}`);
+        });
 
-        setItemCategory("");
-        setItemAmount(1);
+        toaster({
+            message: "Successfully added an item!",
+            status: ToastStatus.SUCCESS,
+        });
+
+        emitItem();
+        setEnterItem({ item: "", amount: 1, type: "" });
     };
+    console.log(enterItem);
 
     return (
         <section className="flex flex-col max-w-full m-auto mb-8 border-b border-solid justify-evenly border-burgundy">
@@ -58,12 +78,12 @@ const EnterForm: React.FC<EnterFormProps> = ({ user }) => {
                     <input
                         id="itemCategory"
                         type="text"
-                        value={itemCategory}
+                        value={enterItem.item}
                         required
-                        autoFocus
+                        name="item"
                         onChange={(
                             event: React.ChangeEvent<HTMLInputElement>,
-                        ): void => setItemCategory(event.target.value)}
+                        ): void => changeValue(event)}
                         className="w-full pr-4 focus:outline-none"
                     />
                 </label>
@@ -71,10 +91,12 @@ const EnterForm: React.FC<EnterFormProps> = ({ user }) => {
                     <input
                         id="itemAmount"
                         type="number"
-                        value={itemAmount}
+                        value={enterItem.amount}
+                        min="1"
+                        name="amount"
                         onChange={(
                             event: React.ChangeEvent<HTMLInputElement>,
-                        ): void => setItemAmount(parseInt(event.target.value))}
+                        ): void => changeValue(event)}
                         className="w-full text-right shadow-md focus:outline-none"
                     ></input>
                 </label>
@@ -82,12 +104,12 @@ const EnterForm: React.FC<EnterFormProps> = ({ user }) => {
                     <select
                         id="itemType"
                         name="type"
-                        value={itemType}
+                        value={enterItem.type}
                         onChange={(
                             event: React.ChangeEvent<HTMLSelectElement>,
-                        ): void => setItemType(event.target.value)}
+                        ): void => changeValue(event)}
                         defaultValue={"default"}
-                        className="minlg:px-4 minlg:mr-2 focus:outline-none"
+                        className="focus:outline-none minlg:mr-2 minlg:px-4"
                     >
                         <option value="default" disabled>
                             Item type
@@ -105,7 +127,12 @@ const EnterForm: React.FC<EnterFormProps> = ({ user }) => {
                 <button
                     type="submit"
                     name="Enter"
-                    className="px-4 m-auto mx-4 mb-6 text-white transition-all duration-300 ease-in-out transform rounded-lg active:bg-blueDark focus:outline-none focus:shadow-outline hover:transition-all bg-blue active:translate-y-1 hover:scale-105"
+                    className={
+                        !enterItem.item || !enterItem.type
+                            ? "counter-button pointer-events-none bg-grey"
+                            : "counter-button focus:shadow-outline bg-blue hover:scale-105 hover:transition-all focus:outline-none active:translate-y-1 active:bg-blueDark"
+                    }
+                    disabled={!enterItem.item || !enterItem.type}
                 >
                     +
                 </button>

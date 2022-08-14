@@ -1,17 +1,17 @@
-import Inventory from "./Inventory";
-import ShoppingList from "./ShoppingList";
-import { useState } from "react";
-import fire from "../../config/fire-config";
-import firebase from "firebase";
+import { getAuth, User } from 'firebase/auth';
+import { useState } from 'react';
+
+import Inventory from './Inventory';
+import ShoppingList from './ShoppingList';
 
 export interface CupboardAndCartChildProps {
-    user: firebase.User | null;
+    user: User | null;
 }
 
 const CupboardAndCart = ({}) => {
     const [inventoryVisible, setInventoryVisible] = useState<boolean>(true);
 
-    const user = fire.auth().currentUser;
+    const user = getAuth().currentUser;
 
     return (
         <div className="flex flex-col flex-1 mt-12 ">
@@ -19,8 +19,8 @@ const CupboardAndCart = ({}) => {
                 <button
                     className={
                         inventoryVisible
-                            ? "bg-blue text-white py-2 pt-4 md:px-4 minlg:px-8 rounded-t-xl focus:outline-none"
-                            : "py-2 pt-4 border-t-2 border-l-2 border-r-2 border-solid md:px-4 minlg:px-8 rounded-t-xl border-blue focus:outline-none"
+                            ? "rounded-t-xl bg-blue py-2 pt-4 text-white focus:outline-none minlg:px-8 md:px-4"
+                            : "rounded-t-xl border-t-2 border-l-2 border-r-2 border-solid border-blue py-2 pt-4 focus:outline-none minlg:px-8 md:px-4"
                     }
                     onClick={() => setInventoryVisible(true)}
                 >
@@ -29,15 +29,15 @@ const CupboardAndCart = ({}) => {
                 <button
                     className={
                         !inventoryVisible
-                            ? "bg-blue text-white py-2 pt-4 md:px-4 minlg:px-8 rounded-t-xl focus:outline-none"
-                            : "py-2 pt-4 border-t-2 border-l-2 border-r-2 border-solid md:px-4 minlg:px-8 rounded-t-xl border-purple focus:outline-none"
+                            ? "rounded-t-xl bg-blue py-2 pt-4 text-white focus:outline-none minlg:px-8 md:px-4"
+                            : "rounded-t-xl border-t-2 border-l-2 border-r-2 border-solid border-purple py-2 pt-4 focus:outline-none minlg:px-8 md:px-4"
                     }
                     onClick={() => setInventoryVisible(false)}
                 >
                     Groceries
                 </button>
             </div>
-            <div className="flex flex-col w-3/5 min-h-screen m-auto border-solid minmd:shadow-xl minmd:rounded-lg minmd:border-4 border-blue sm:w-screen sm:border-t-4 sm:border-b-4">
+            <div className="flex flex-col w-3/5 min-h-screen m-auto border-solid border-blue minmd:rounded-lg minmd:border-4 minmd:shadow-xl sm:w-screen sm:border-t-4 sm:border-b-4">
                 {inventoryVisible ? (
                     <Inventory user={user} />
                 ) : (
