@@ -1,6 +1,8 @@
-import { Toast, ToastStatus } from "../../../utils/toasts/toast.entity";
-import { toaster } from "../../../utils/toasts/Toaster";
-import fire from "../../../config/fire-config";
+import { auth, fireDatabase } from '@fire-config';
+import { Toast, ToastStatus } from '@toaster/toast.entity';
+import { toaster } from '@toaster/Toaster';
+import { createUserWithEmailAndPassword } from 'firebase/auth';
+import { collection, doc, setDoc } from 'firebase/firestore';
 
 export interface SignupData {
     email: string;
@@ -33,10 +35,8 @@ export const onSignUp: (formData: SignupData) => Promise<SignUpResult> = (
         return new Promise(() => SignUpResult.FAILURE);
     }
 
-    return fire
-        .auth()
-        .createUserWithEmailAndPassword(email, password)
-        .then((user) => {
+    return createUserWithEmailAndPassword(auth, email, password)
+        .then(async (user) => {
             const userUid = user.user?.uid;
 
             const account = {
@@ -44,7 +44,9 @@ export const onSignUp: (formData: SignupData) => Promise<SignUpResult> = (
                 useruid: userUid,
             };
 
-            fire.firestore().collection(`Users`).doc(email).set(account);
+            const collectionRef = collection(fireDatabase, "Users");
+
+            await setDoc(doc(collectionRef, email), account);
 
             toaster(successToast);
             return SignUpResult.SUCCESS;
