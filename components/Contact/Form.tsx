@@ -1,31 +1,87 @@
-import React, { FormEvent, useEffect } from "react";
-import { useState } from "react";
-import { ContactSubmitProps } from "./Contact";
+import React, { FormEvent, useEffect, useReducer } from 'react';
+import { useState } from 'react';
+
+import { ContactSubmitProps } from './Contact';
+import { ContactForm, ContactKeys } from './entities/form-data.entity';
+
+interface UpdateAction {
+    type: ContactKeys;
+    payload: string;
+    reset?: boolean;
+}
+
+interface ResetAction {
+    reset: "reset";
+}
+
+type Action = UpdateAction | ResetAction;
 
 const Form: React.FC<ContactSubmitProps> = ({
     clearState,
     submitContactForm,
 }) => {
-    const [title, setTitle] = useState<string>("");
-    const [firstName, setFirstName] = useState<string>("");
-    const [lastName, setLastName] = useState<string>("");
-    const [email, setEmail] = useState<string>("");
-    const [message, setMessage] = useState<string>("");
+    const DEFAULT_STATE = {
+        title: "",
+        firstName: "",
+        lastName: "",
+        email: "",
+        message: "",
+    };
+
+    const initialiseFormData = (): ContactForm => {
+        return DEFAULT_STATE;
+    };
+
+    const reduceFormData = (
+        state: ContactForm,
+        action: Action,
+    ): ContactForm => {
+        if ("reset" in action) {
+            return initialiseFormData();
+        }
+
+        const { type, payload }: { type: ContactKeys; payload: string } =
+            action;
+
+        const map: {
+            [key in ContactKeys]: (
+                state: ContactForm,
+                payload: Partial<ContactForm>,
+            ) => ContactForm;
+        } = {
+            [ContactKeys.TITLE]: reduceCallback,
+            [ContactKeys.FIRSTNAME]: reduceCallback,
+            [ContactKeys.LASTNAME]: reduceCallback,
+            [ContactKeys.EMAIL]: reduceCallback,
+            [ContactKeys.MESSAGE]: reduceCallback,
+        };
+
+        return map[type](state, { [type]: payload });
+    };
+
+    const reduceCallback = <T extends Partial<ContactForm>>(
+        state: ContactForm,
+        payload: T,
+    ): ContactForm => {
+        return { ...state, ...payload };
+    };
+
+    const [formData, dispatch] = useReducer(
+        reduceFormData,
+        DEFAULT_STATE,
+        initialiseFormData,
+    );
 
     const [submit, setSubmit] = useState<boolean>(false);
 
     const handleSubmit = (e: FormEvent<HTMLFormElement>) => {
         e.preventDefault();
-        submitContactForm(title, firstName, lastName, email, message);
+        submitContactForm(formData);
     };
 
     useEffect(() => {
         if (clearState[clearState.length - 1] === true) {
-            setTitle("");
-            setFirstName("");
-            setLastName("");
-            setEmail("");
-            setMessage("");
+            dispatch({ reset: "reset" });
             setSubmit(true);
         }
     }, [clearState.length]);
@@ -34,7 +90,7 @@ const Form: React.FC<ContactSubmitProps> = ({
         <section>
             <form
                 onSubmit={handleSubmit}
-                className="flex flex-col justify-between flex-1 p-8 pt-12 m-auto border-solid shadow-lg sm:border-t-4 sm:border-b-4 minmd:rounded-lg minmd:border-4 minlg:w-3/5 md:w-4/5 sm:w-screen border-blue"
+                className="flex flex-col justify-between flex-1 p-8 pt-12 m-auto border-solid shadow-lg border-blue minlg:w-3/5 minmd:rounded-lg minmd:border-4 md:w-4/5 sm:w-screen sm:border-t-4 sm:border-b-4"
             >
                 <label
                     htmlFor="title"
@@ -45,12 +101,16 @@ const Form: React.FC<ContactSubmitProps> = ({
                 <select
                     id="title"
                     name="title"
-                    required
-                    value={title}
+                    value={formData.title}
                     onChange={(
                         event: React.ChangeEvent<HTMLSelectElement>,
-                    ): void => setTitle(event.target.value)}
-                    className="mb-4 transition-all duration-200 ease-in border-b border-burgundy focus:outline-none focus:shadow-formField"
+                    ): void =>
+                        dispatch({
+                            type: ContactKeys.TITLE,
+                            payload: event.target.value,
+                        })
+                    }
+                    className="mb-4 transition-all duration-200 ease-in border-b border-burgundy focus:shadow-formField focus:outline-none"
                 >
                     <option defaultChecked disabled value="">
                         Select your title
@@ -70,11 +130,16 @@ const Form: React.FC<ContactSubmitProps> = ({
                     type="text"
                     name="firstName"
                     placeholder="first name"
-                    value={firstName}
+                    value={formData.firstName}
                     onChange={(
                         event: React.ChangeEvent<HTMLInputElement>,
-                    ): void => setFirstName(event.target.value)}
-                    className="mb-4 transition-all duration-200 ease-in border-b border-burgundy focus:outline-none focus:shadow-formField"
+                    ): void =>
+                        dispatch({
+                            type: ContactKeys.FIRSTNAME,
+                            payload: event.target.value,
+                        })
+                    }
+                    className="mb-4 transition-all duration-200 ease-in border-b border-burgundy focus:shadow-formField focus:outline-none"
                 />
                 <label
                     htmlFor="lastName"
@@ -87,11 +152,16 @@ const Form: React.FC<ContactSubmitProps> = ({
                     type="text"
                     name="lastName"
                     placeholder="last name"
-                    value={lastName}
+                    value={formData.lastName}
                     onChange={(
                         event: React.ChangeEvent<HTMLInputElement>,
-                    ): void => setLastName(event.target.value)}
-                    className="mb-4 transition-all duration-200 ease-in border-b border-burgundy focus:outline-none focus:shadow-formField"
+                    ): void =>
+                        dispatch({
+                            type: ContactKeys.LASTNAME,
+                            payload: event.target.value,
+                        })
+                    }
+                    className="mb-4 transition-all duration-200 ease-in border-b border-burgundy focus:shadow-formField focus:outline-none"
                 />
                 <label
                     htmlFor="email"
@@ -105,11 +175,16 @@ const Form: React.FC<ContactSubmitProps> = ({
                     name="email"
                     placeholder="email"
                     required
-                    value={email}
+                    value={formData.email}
                     onChange={(
                         event: React.ChangeEvent<HTMLInputElement>,
-                    ): void => setEmail(event.target.value)}
-                    className="mb-4 transition-all duration-200 ease-in border-b border-burgundy focus:outline-none focus:shadow-formField"
+                    ): void =>
+                        dispatch({
+                            type: ContactKeys.EMAIL,
+                            payload: event.target.value,
+                        })
+                    }
+                    className="mb-4 transition-all duration-200 ease-in border-b border-burgundy focus:shadow-formField focus:outline-none"
                 />
                 <label
                     htmlFor="message"
@@ -122,16 +197,26 @@ const Form: React.FC<ContactSubmitProps> = ({
                     name="message"
                     placeholder="Leave your message for our team here"
                     required
-                    value={message}
+                    value={formData.message}
                     onChange={(
                         event: React.ChangeEvent<HTMLTextAreaElement>,
-                    ): void => setMessage(event.target.value)}
-                    className="mb-16 transition-all duration-200 ease-in border-b border-burgundy min-h-1/8 focus:outline-none focus:shadow-formField"
+                    ): void =>
+                        dispatch({
+                            type: ContactKeys.MESSAGE,
+                            payload: event.target.value,
+                        })
+                    }
+                    className="mb-16 transition-all duration-200 ease-in border-b min-h-1/8 border-burgundy focus:shadow-formField focus:outline-none"
                 />
                 <button
                     type="submit"
                     name="Send"
-                    className="w-4/5 px-4 py-2 m-auto text-white transition-all duration-300 ease-in-out transform rounded-lg shadow-lg active:bg-blueDark focus:outline-none focus:shadow-outline hover:transition-all bg-blue active:translate-y-1 hover:scale-105"
+                    className={
+                        !formData.email || !formData.message
+                            ? "contact-submit-button pointer-events-none bg-grey"
+                            : "contact-submit-button focus:shadow-outline transform bg-blue transition-all duration-300 ease-in-out hover:scale-105 hover:transition-all focus:outline-none active:translate-y-1 active:bg-blueDark"
+                    }
+                    disabled={!formData.email || !formData.message}
                 >
                     Send
                 </button>

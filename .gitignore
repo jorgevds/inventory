@@ -36,3 +36,5 @@ yarn-error.log*
 # file(s) I still like to keep on record, but no longer need for the app
 components/App/Enter.tsx
 pages/enter.tsx
+
+.vscode/

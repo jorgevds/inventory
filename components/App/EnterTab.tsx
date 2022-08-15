@@ -69,7 +69,6 @@ const EnterForm: React.FC<EnterFormProps> = ({
         emitItem();
         setEnterItem({ item: "", amount: 1, type: "" });
     };
-    console.log(enterItem);
 
     return (
         <section className="flex flex-col max-w-full m-auto mb-8 border-b border-solid justify-evenly border-burgundy">
@@ -108,10 +107,9 @@ const EnterForm: React.FC<EnterFormProps> = ({
                         onChange={(
                             event: React.ChangeEvent<HTMLSelectElement>,
                         ): void => changeValue(event)}
-                        defaultValue={"default"}
                         className="focus:outline-none minlg:mr-2 minlg:px-4"
                     >
-                        <option value="default" disabled>
+                        <option value="" disabled>
                             Item type
                         </option>
                         {itemTypeList.map((itemTypeList) => (
@@ -130,7 +128,7 @@ const EnterForm: React.FC<EnterFormProps> = ({
                     className={
                         !enterItem.item || !enterItem.type
                             ? "counter-button pointer-events-none bg-grey"
-                            : "counter-button focus:shadow-outline bg-blue hover:scale-105 hover:transition-all focus:outline-none active:translate-y-1 active:bg-blueDark"
+                            : "counter-button focus:shadow-outline transform bg-blue transition-all duration-300 ease-in-out hover:scale-105 hover:transition-all focus:outline-none active:translate-y-1 active:bg-blueDark "
                     }
                     disabled={!enterItem.item || !enterItem.type}
                 >

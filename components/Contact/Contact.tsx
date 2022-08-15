@@ -5,17 +5,12 @@ import { collection, doc, setDoc } from 'firebase/firestore';
 import { useState } from 'react';
 
 import { CaptchaCheck } from '../CaptchaCheck';
+import { ContactForm } from './entities/form-data.entity';
 import Form from './Form';
 
 export interface ContactSubmitProps {
     clearState: boolean[];
-    submitContactForm: (
-        title: string,
-        firstName: string,
-        lastName: string,
-        email: string,
-        message: string,
-    ) => void;
+    submitContactForm: (formData: ContactForm) => void;
 }
 
 const Contact = () => {
@@ -30,47 +25,28 @@ const Contact = () => {
         "Something went wrong. Please try again!",
         ToastStatus.ERROR,
     );
+    const pleaseRefreshError = new Toast(
+        "Something went wrong. Please refresh the page and try again.",
+        ToastStatus.ERROR,
+    );
 
     const validateCaptchaToken = (token: string) => {
         setToken(token);
     };
 
-    const submitContactForm = async (
-        title: string,
-        firstName: string,
-        lastName: string,
-        email: string,
-        message: string,
-    ) => {
-        const result = await handleSubmit(
-            title,
-            firstName,
-            lastName,
-            email,
-            message,
-        );
+    const submitContactForm = async (formData: ContactForm) => {
+        const result = await handleSubmit(formData);
 
         if (result === true) {
             setClearState([...clearState, true]);
-        } else {
-            toaster(submitError);
         }
     };
 
-    const handleSubmit: (
-        title: string,
-        firstName: string,
-        lastName: string,
-        email: string,
-        message: string,
-    ) => Promise<boolean> = async (
-        title: string,
-        firstName: string,
-        lastName: string,
-        email: string,
-        message: string,
-    ) => {
+    const handleSubmit: (formData: ContactForm) => Promise<boolean> = async (
+        formData: ContactForm,
+    ): Promise<boolean> => {
         if (!token) {
+            toaster(submitError);
             return false;
         }
 
@@ -86,18 +62,24 @@ const Contact = () => {
         });
 
         const data = await response.json();
+        if (data.response === "failure") {
+            toaster(pleaseRefreshError);
+            return false;
+        }
 
-        if (data.response == "success") {
+        if (data.response === "success") {
+            const { title, firstName, lastName, email, message } = formData;
+
             const collectionRef = collection(fireDatabase, "contact-form");
 
             return await setDoc(
-                doc(collectionRef, email + " " + window.Date()),
+                doc(collectionRef, `${email} - ${window.Date()}`),
                 {
-                    title: title,
-                    firstName: firstName,
-                    lastName: lastName,
-                    email: email,
-                    message: message,
+                    title,
+                    firstName,
+                    lastName,
+                    email,
+                    message,
                 },
             )
                 .then(() => {
@@ -105,16 +87,20 @@ const Contact = () => {
                     return true;
                 })
                 .catch((err: any) => {
-                    console.error("Contact: Firestore error:", err);
+                    console.error(
+                        "Contact: Something went wrong while saving contact message. Error:",
+                        err,
+                    );
                     return false;
                 });
         } else {
+            toaster(submitError);
             return false;
         }
     };
 
     return (
-        <section className="m-auto flex flex-1 flex-col py-4 minlg:py-12 minmd:w-3/5 md:w-full">
+        <section className="flex flex-col flex-1 py-4 m-auto minlg:py-12 minmd:w-3/5 md:w-full">
             <article className="m-auto mb-8">
                 <h2 className="my-4">Got questions?</h2>
                 <h2 className="my-4">We might have answers!</h2>

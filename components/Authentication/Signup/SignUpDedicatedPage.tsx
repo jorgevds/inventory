@@ -80,7 +80,7 @@ export const SignUpDedicatedPage: React.FC<SignUpPageProps> = ({
                         password.length < 6 ||
                         passwordConfirmation.length < 6
                             ? "signup-button pointer-events-none bg-grey"
-                            : "signup-button focus:shadow-outline bg-blue hover:scale-105 hover:transition-all focus:outline-none active:translate-y-1 active:bg-blueDark"
+                            : "signup-button focus:shadow-outline transform bg-blue transition-all duration-300 ease-in-out hover:scale-105 hover:transition-all focus:outline-none active:translate-y-1 active:bg-blueDark "
                     }
                     disabled={
                         !email ||
