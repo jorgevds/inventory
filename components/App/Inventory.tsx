@@ -8,11 +8,14 @@ import { useEffect, useState } from 'react';
 import { CupboardAndCartChildProps } from './CupboardAndCart';
 import EnterForm from './EnterTab';
 import { InventoryItem } from './entities/inventory-item.entity';
+import { LoadingItems } from './LoadingItems';
 
 const Inventory: React.FC<CupboardAndCartChildProps> = ({ user }) => {
     const [itemsList, setItemsList] = useState<InventoryItem[]>([]);
+    const [loading, setLoading] = useState<boolean>(true);
 
     const initItems = async () => {
+        setLoading(true);
         let data: InventoryItem[] = [];
 
         const collectionRef = collection(fireDatabase, `${user?.email}`);
@@ -28,6 +31,7 @@ const Inventory: React.FC<CupboardAndCartChildProps> = ({ user }) => {
         });
 
         setItemsList(data.sort(sortItemAlphabetically));
+        setLoading(false);
     };
 
     useEffect(() => {
@@ -83,56 +87,62 @@ const Inventory: React.FC<CupboardAndCartChildProps> = ({ user }) => {
     return (
         <article className="flex flex-col">
             <EnterForm user={user} bubbleItemEntered={bubbleItemEntered} />
-            {itemsList.length === 0 ? (
-                <div className="mt-16 text-xl text-center">
-                    Click <span className="text-blue">Enter</span> above or the{" "}
-                    <span className="text-blue">plus symbol</span> below to get
-                    started!
-                </div>
-            ) : (
-                <ul>
-                    {itemsList.map((item) => (
-                        <li
-                            key={item.id}
-                            className="flex justify-between my-4 text-lg minmd:mx-12 md:mx-2"
-                        >
-                            <div
-                                className={
-                                    item.amount === 0 ? "text-burgundy" : ""
-                                }
+            <LoadingItems loading={loading}>
+                {itemsList.length === 0 ? (
+                    <div className="mt-16 text-xl text-center">
+                        Click <span className="text-blue">Enter</span> above or
+                        the <span className="text-blue">plus symbol</span> below
+                        to get started!
+                    </div>
+                ) : (
+                    <ul>
+                        {itemsList.map((item) => (
+                            <li
+                                key={item.id}
+                                className="flex justify-between my-4 text-lg minxl:mx-12 xl:mx-8 md:mx-2"
                             >
-                                <span className="pr-4">{item.item}</span>{" "}
-                                <span className="minmd:px-4">
-                                    {item.amount}
-                                </span>{" "}
-                                <span className="minmd:px-4">{item.type}</span>
-                            </div>
-                            <div className="flex justify-between w-3/12">
-                                <button
-                                    className="px-2 text-xl font-bold transition-all duration-200 ease-in-out border-2 border-solid rounded-lg shadow-md cursor-pointer border-blue text-blue hover:text-mauve"
-                                    onClick={() => changeItemAmount(item, true)}
+                                <div
+                                    className={
+                                        item.amount === 0 ? "text-burgundy" : ""
+                                    }
                                 >
-                                    +
-                                </button>
-                                <button
-                                    className="px-2 text-xl font-bold transition-all duration-200 ease-in-out border-2 border-solid rounded-lg shadow-md cursor-pointer border-blue text-blue hover:text-mauve"
-                                    onClick={() => changeItemAmount(item)}
-                                >
-                                    -
-                                </button>
-                                <button
-                                    onClick={() => {
-                                        deleteItem(item);
-                                    }}
-                                    className="px-4 mr-4 text-white transition-all duration-200 ease-in-out rounded-lg shadow-md bg-mauve hover:bg-burgundy hover:transition-all focus:outline-none sm:px-2"
-                                >
-                                    X
-                                </button>
-                            </div>
-                        </li>
-                    ))}
-                </ul>
-            )}
+                                    <span className="pr-4">{item.item}</span>{" "}
+                                    <span className="minmd:px-4">
+                                        {item.amount}
+                                    </span>{" "}
+                                    <span className="minmd:px-4">
+                                        {item.type}
+                                    </span>
+                                </div>
+                                <div className="flex justify-between w-auto xl:w-3/12 md:w-auto">
+                                    <button
+                                        className="px-2 text-xl font-bold transition-all duration-200 ease-in-out border-2 border-solid rounded-lg shadow-md cursor-pointer border-blue text-blue hover:text-mauve"
+                                        onClick={() =>
+                                            changeItemAmount(item, true)
+                                        }
+                                    >
+                                        +
+                                    </button>
+                                    <button
+                                        className="px-2 text-xl font-bold transition-all duration-200 ease-in-out border-2 border-solid rounded-lg shadow-md cursor-pointer border-blue text-blue hover:text-mauve minxl:mx-2 md:mx-2"
+                                        onClick={() => changeItemAmount(item)}
+                                    >
+                                        -
+                                    </button>
+                                    <button
+                                        onClick={() => {
+                                            deleteItem(item);
+                                        }}
+                                        className="px-4 mr-4 text-white transition-all duration-200 ease-in-out rounded-lg shadow-md bg-mauve hover:bg-burgundy hover:transition-all focus:outline-none sm:px-2"
+                                    >
+                                        X
+                                    </button>
+                                </div>
+                            </li>
+                        ))}
+                    </ul>
+                )}
+            </LoadingItems>
         </article>
     );
 };
