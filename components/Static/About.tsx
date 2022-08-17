@@ -1,4 +1,4 @@
-import Image from 'next/image';
+import Image from 'next/future/image';
 import Link from 'next/link';
 
 import profile from '../../public/img/profile.jpg';
@@ -35,11 +35,13 @@ export const About = () => {
                         fact.
                     </p>
                 </article>
-                <article className="flex flex-col self-center w-3/12 border-2 border-solid rounded-full shadow-md border-blue sm:my-8 sm:w-3/6">
+                <article className="flex flex-col self-center w-3/12 sm:my-8 sm:w-3/6">
                     <Image
                         src={profile}
-                        className="w-full h-auto rounded-full"
+                        className="w-full h-auto border-2 border-solid rounded-full shadow-md border-blue"
                         alt="Profile picture of the creator, Jorge"
+                        placeholder="blur"
+                        priority={true}
                     />
                 </article>
             </section>
