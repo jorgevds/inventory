@@ -63,6 +63,8 @@ module.exports = {
         },
         plugins: [],
         screens: {
+            minxxl: { min: "1280px" },
+            // => @media (min-width: 1280px) { ... }
             xxl: { max: "2040px" },
             // => @media (max-width: 2040px) { ... }
             minxl: { min: "1024px" },

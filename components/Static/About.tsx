@@ -1,10 +1,13 @@
-import Link from "next/link";
+import Image from 'next/image';
+import Link from 'next/link';
 
-const About = () => {
+import profile from '../../public/img/profile.jpg';
+
+export const About = () => {
     return (
         <>
-            <section className="flex justify-center flex-1 min-h-screen pb-8 sm:flex-col align-center">
-                <article className="flex flex-col self-center w-3/6 text-4xl sm:w-4/6 sm:py-8 minmd:mr-10">
+            <section className="flex justify-center flex-1 min-h-screen pb-8 align-center sm:flex-col">
+                <article className="flex flex-col self-center w-3/6 text-4xl minxxl:w-4/12 minmd:mr-10 sm:w-4/6 sm:py-8">
                     <h1>
                         Hi there, I'm{" "}
                         <span className="text-blueDark">Jorge</span>
@@ -32,10 +35,10 @@ const About = () => {
                         fact.
                     </p>
                 </article>
-                <article className="flex flex-col self-center w-3/12 sm:w-3/6 sm:py-8">
-                    <img
-                        src="img/profile.jpg"
-                        className="w-full h-auto border-2 border-solid rounded-full shadow-md border-blue"
+                <article className="flex flex-col self-center w-3/12 border-2 border-solid rounded-full shadow-md border-blue sm:my-8 sm:w-3/6">
+                    <Image
+                        src={profile}
+                        className="w-full h-auto rounded-full"
                         alt="Profile picture of the creator, Jorge"
                     />
                 </article>
@@ -48,7 +51,7 @@ const About = () => {
 
                 <Link href="/users/signup">
                     <a>
-                        <button className="w-full py-4 m-auto my-8 text-xl text-white transition-all duration-300 ease-in-out transform rounded-lg shadow-lg bg-blue focus:outline-none focus:shadow-outline hover:transition-all hover:scale-105">
+                        <button className="w-full py-4 m-auto my-8 text-xl text-white transition-all duration-300 ease-in-out transform rounded-lg shadow-lg focus:shadow-outline bg-blue hover:scale-105 hover:transition-all focus:outline-none">
                             Sign up now
                         </button>
                     </a>
@@ -57,5 +60,3 @@ const About = () => {
         </>
     );
 };
-
-export default About;
