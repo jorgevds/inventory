@@ -16,7 +16,7 @@ interface ResetAction {
 
 type Action = UpdateAction | ResetAction;
 
-const Form: React.FC<ContactSubmitProps> = ({
+export const Form: React.FC<ContactSubmitProps> = ({
     clearState,
     submitContactForm,
 }) => {
@@ -234,5 +234,3 @@ const Form: React.FC<ContactSubmitProps> = ({
         </section>
     );
 };
-
-export default Form;

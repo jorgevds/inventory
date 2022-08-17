@@ -1,15 +1,15 @@
 import Head from 'next/head';
 import React from 'react';
 
-import Footer from '../Navigation/Footer';
-import Header from '../Navigation/Header';
+import { Footer } from '../Navigation/Footer';
+import { Header } from '../Navigation/Header';
 
 interface LayoutProps {
     children: React.ReactNode;
     title: string;
 }
 
-const Layout: React.FC<LayoutProps> = ({ children, title = "" }) => {
+export const Layout: React.FC<LayoutProps> = ({ children, title = "" }) => {
     const fullTitle = "Inventory";
 
     return (
@@ -81,5 +81,3 @@ const Layout: React.FC<LayoutProps> = ({ children, title = "" }) => {
         </>
     );
 };
-
-export default Layout;

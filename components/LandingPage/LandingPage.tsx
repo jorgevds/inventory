@@ -1,8 +1,8 @@
-import Detail from './Detail';
-import Hero from './HeroBanner';
-import Promo from './Promo';
+import { Detail } from './Detail';
+import { Hero } from './HeroBanner';
+import { Promo } from './Promo';
 
-const Landing = () => {
+export const Landing = () => {
     return (
         <section>
             <Hero />
@@ -11,4 +11,3 @@ const Landing = () => {
         </section>
     );
 };
-export default Landing;

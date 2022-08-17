@@ -2,7 +2,7 @@ import Link from 'next/link';
 
 import { HomeLink } from './HomeLink';
 
-const Footer = () => {
+export const Footer = () => {
     return (
         <footer className="z-10">
             <nav className="pt-8 pb-12 mt-16 text-white bg-blue minlg:px-20 minmd:flex minmd:justify-evenly minmd:px-10">
@@ -50,5 +50,3 @@ const Footer = () => {
         </footer>
     );
 };
-
-export default Footer;

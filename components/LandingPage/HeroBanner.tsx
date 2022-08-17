@@ -1,6 +1,6 @@
-const Hero = () => {
+export const Hero = () => {
     return (
-        <section className="flex justify-between min-h-screen sm:flex-col bg-blackMuted align-center">
+        <section className="flex justify-between min-h-screen bg-blackMuted align-center sm:flex-col">
             <article className="flex flex-col self-center w-5/12 minlg:ml-12 minmd:ml-6 sm:w-5/6">
                 <img
                     src="img/inventory.png"
@@ -22,5 +22,3 @@ const Hero = () => {
         </section>
     );
 };
-
-export default Hero;

@@ -5,7 +5,7 @@ import { sendPasswordResetEmail } from 'firebase/auth';
 import { useRouter } from 'next/router';
 import { FormEvent, useState } from 'react';
 
-const ResetPassword = () => {
+export const ResetPassword = () => {
     const router = useRouter();
     const [emailAddress, setEmailAddress] = useState<string>("");
 
@@ -63,4 +63,3 @@ const ResetPassword = () => {
         </section>
     );
 };
-export default ResetPassword;

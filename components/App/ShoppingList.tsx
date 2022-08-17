@@ -7,7 +7,7 @@ import { useCallback, useEffect, useState } from 'react';
 import { CupboardAndCartChildProps } from './CupboardAndCart';
 import { LoadingItems } from './LoadingItems';
 
-const ShoppingList: React.FC<CupboardAndCartChildProps> = ({ user }) => {
+export const ShoppingList: React.FC<CupboardAndCartChildProps> = ({ user }) => {
     const [groceryList, setGroceryList] = useState<DocumentData[]>([]);
     const [loading, setLoading] = useState<boolean>(true);
 
@@ -88,5 +88,3 @@ const ShoppingList: React.FC<CupboardAndCartChildProps> = ({ user }) => {
         </article>
     );
 };
-
-export default ShoppingList;

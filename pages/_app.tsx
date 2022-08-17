@@ -5,7 +5,7 @@ import { AppProps } from 'next/app';
 import { Slide, ToastContainer } from 'react-toastify';
 
 import { AuthProvider } from '../components/Authentication/AuthContext';
-import Snackbar from '../components/Authentication/Snackbar';
+import { Snackbar } from '../components/Authentication/Snackbar';
 
 function MyApp(props: AppProps) {
     const { Component, pageProps } = props;

@@ -6,11 +6,11 @@ import { collection, deleteDoc, doc, DocumentData, getDocs, updateDoc } from 'fi
 import { useEffect, useState } from 'react';
 
 import { CupboardAndCartChildProps } from './CupboardAndCart';
-import EnterForm from './EnterTab';
+import { EnterForm } from './EnterTab';
 import { InventoryItem } from './entities/inventory-item.entity';
 import { LoadingItems } from './LoadingItems';
 
-const Inventory: React.FC<CupboardAndCartChildProps> = ({ user }) => {
+export const Inventory: React.FC<CupboardAndCartChildProps> = ({ user }) => {
     const [itemsList, setItemsList] = useState<InventoryItem[]>([]);
     const [loading, setLoading] = useState<boolean>(true);
 
@@ -146,5 +146,3 @@ const Inventory: React.FC<CupboardAndCartChildProps> = ({ user }) => {
         </article>
     );
 };
-
-export default Inventory;

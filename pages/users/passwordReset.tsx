@@ -1,5 +1,5 @@
-import ResetPassword from '../../components/Authentication/ResetPassword';
-import Layout from '../../components/Layouts/Layout';
+import { ResetPassword } from '../../components/Authentication/ResetPassword';
+import { Layout } from '../../components/Layouts/Layout';
 
 const ResetPasswordPage = () => {
     return (

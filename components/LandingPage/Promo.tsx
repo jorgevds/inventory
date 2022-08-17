@@ -1,6 +1,6 @@
 import Link from 'next/link';
 
-const Promo = () => {
+export const Promo = () => {
     return (
         <section className="flex justify-between min-h-screen bg-white align-center">
             <article className="flex flex-col self-center w-3/6 m-auto text-center text-black">
@@ -24,5 +24,3 @@ const Promo = () => {
         </section>
     );
 };
-
-export default Promo;

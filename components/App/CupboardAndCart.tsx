@@ -1,21 +1,21 @@
 import { getAuth, User } from 'firebase/auth';
 import { useState } from 'react';
 
-import Inventory from './Inventory';
-import ShoppingList from './ShoppingList';
+import { Inventory } from './Inventory';
+import { ShoppingList } from './ShoppingList';
 
 export interface CupboardAndCartChildProps {
     user: User | null;
 }
 
-const CupboardAndCart = ({}) => {
+export const CupboardAndCart = ({}) => {
     const [inventoryVisible, setInventoryVisible] = useState<boolean>(true);
 
     const user = getAuth().currentUser;
 
     return (
-        <div className="flex flex-col flex-1 mt-12 ">
-            <div className="flex justify-between w-3/5 m-auto minmd:px-12 sm:w-full">
+        <div className="mt-12 flex flex-1 flex-col ">
+            <div className="m-auto flex w-3/5 justify-between minmd:px-12 sm:w-full">
                 <button
                     className={
                         inventoryVisible
@@ -37,7 +37,7 @@ const CupboardAndCart = ({}) => {
                     Groceries
                 </button>
             </div>
-            <div className="flex flex-col w-3/5 min-h-screen m-auto border-solid border-blue minmd:rounded-lg minmd:border-4 minmd:shadow-xl sm:w-screen sm:border-t-4 sm:border-b-4">
+            <div className="m-auto flex min-h-screen w-3/5 flex-col border-solid border-blue minmd:rounded-lg minmd:border-4 minmd:shadow-xl sm:w-screen sm:border-t-4 sm:border-b-4">
                 {inventoryVisible ? (
                     <Inventory user={user} />
                 ) : (
@@ -47,5 +47,3 @@ const CupboardAndCart = ({}) => {
         </div>
     );
 };
-
-export default CupboardAndCart;

@@ -14,7 +14,7 @@ export interface SignUpPageProps {
     ) => void;
 }
 
-const SignUpUser = () => {
+export const SignUpUser = () => {
     const router = useRouter();
     const signupPage = router.route.includes("users");
 
@@ -51,5 +51,3 @@ const SignUpUser = () => {
         />
     );
 };
-
-export default SignUpUser;

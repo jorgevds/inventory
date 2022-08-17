@@ -12,7 +12,7 @@ interface EnterFormProps {
     bubbleItemEntered: () => void;
 }
 
-const EnterForm: React.FC<EnterFormProps> = ({
+export const EnterForm: React.FC<EnterFormProps> = ({
     user,
     bubbleItemEntered: emitItem,
 }) => {
@@ -71,8 +71,8 @@ const EnterForm: React.FC<EnterFormProps> = ({
     };
 
     return (
-        <section className="flex flex-col max-w-full m-auto mb-8 border-b border-solid justify-evenly border-burgundy">
-            <form onSubmit={handleSubmit} className="flex pt-12 mx-4">
+        <section className="m-auto mb-8 flex max-w-full flex-col justify-evenly border-b border-solid border-burgundy">
+            <form onSubmit={handleSubmit} className="mx-4 flex pt-12">
                 <label htmlFor="itemCategory">
                     <input
                         id="itemCategory"
@@ -138,5 +138,3 @@ const EnterForm: React.FC<EnterFormProps> = ({
         </section>
     );
 };
-
-export default EnterForm;

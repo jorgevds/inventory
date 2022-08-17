@@ -6,14 +6,14 @@ import { useState } from 'react';
 
 import { CaptchaCheck } from '../CaptchaCheck';
 import { ContactForm } from './entities/form-data.entity';
-import Form from './Form';
+import { Form } from './Form';
 
 export interface ContactSubmitProps {
     clearState: boolean[];
     submitContactForm: (formData: ContactForm) => void;
 }
 
-const Contact = () => {
+export const Contact = () => {
     const [token, setToken] = useState<string | null>();
     const [clearState, setClearState] = useState<boolean[]>([false]);
 
@@ -119,5 +119,3 @@ const Contact = () => {
         </section>
     );
 };
-
-export default Contact;

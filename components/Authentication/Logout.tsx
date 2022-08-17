@@ -3,7 +3,7 @@ import { ToastStatus } from '@toaster/toast.entity';
 import { toaster } from '@toaster/Toaster';
 import { useRouter } from 'next/router';
 
-const Logout = () => {
+export const Logout = () => {
     const router = useRouter();
 
     const handleLogout = () => {
@@ -28,5 +28,3 @@ const Logout = () => {
         </div>
     );
 };
-
-export default Logout;

@@ -1,7 +1,7 @@
 import Link from 'next/link';
 import { useEffect, useState } from 'react';
 
-const Snackbar = () => {
+export const Snackbar = () => {
     const [agree, setAgree] = useState<boolean>(false);
 
     const setCookie = () => {
@@ -59,5 +59,3 @@ const Snackbar = () => {
         </>
     );
 };
-
-export default Snackbar;

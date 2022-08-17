@@ -1,9 +1,9 @@
 import { useAuth } from '../Authentication/AuthContext';
-import Logout from '../Authentication/Logout';
+import { Logout } from '../Authentication/Logout';
 import { ActiveLink } from './ActiveLink';
 import { HomeLink } from './HomeLink';
 
-const Header = () => {
+export const Header = () => {
     const { loggedIn } = useAuth();
     const homeLinkClasses = "pb-2 font-title";
 
@@ -49,5 +49,3 @@ const Header = () => {
         </header>
     );
 };
-
-export default Header;

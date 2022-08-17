@@ -1,6 +1,6 @@
-const Detail = () => {
+export const Detail = () => {
     return (
-        <section className="flex justify-between min-h-screen sm:flex-col bg-blue align-center">
+        <section className="flex justify-between min-h-screen align-center bg-blue sm:flex-col">
             <article className="flex flex-col self-center w-2/5 m-auto text-white md:text-center ">
                 <h2 className="py-8 text-2xl">
                     Grocery lists on{" "}
@@ -20,7 +20,7 @@ const Detail = () => {
                     tab!
                 </h3>
             </article>
-            <article className="flex flex-col self-center w-5/12 md:pb-8 minlg:mr-12 minmd:mr-6">
+            <article className="flex flex-col self-center w-5/12 minlg:mr-12 minmd:mr-6 md:pb-8">
                 <img
                     src="img/groceries.png"
                     className="w-full h-auto bg-white rounded-lg shadow-2xl"
@@ -30,5 +30,3 @@ const Detail = () => {
         </section>
     );
 };
-
-export default Detail;

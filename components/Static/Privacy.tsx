@@ -1,4 +1,4 @@
-const Privacy = () => {
+export const Privacy = () => {
     const tableOfContents = [
         { id: 1, name: "What data do we collect?", href: "#what-data" },
         { id: 2, name: "How do we collect your data?", href: "#collect-data" },
@@ -38,7 +38,7 @@ const Privacy = () => {
 
     return (
         <article className="flex justify-between flex-1 mt-12">
-            <section className="flex flex-col justify-between w-3/5 m-auto minmd:px-12 sm:px-4 sm:w-full">
+            <section className="flex flex-col justify-between w-3/5 m-auto minmd:px-12 sm:w-full sm:px-4">
                 <article className="my-4">
                     <h2 className="mb-2 text-2xl">Inventory Privacy Policy</h2>
                     <h3>
@@ -296,5 +296,3 @@ const Privacy = () => {
         </article>
     );
 };
-
-export default Privacy;
